@@ -1,0 +1,17 @@
+﻿<div ng-show="notLoaded" class=" center bar bar-subheader">
+    <h1 class="title">Loading PDF...</h1>
+</div>
+<div class="tabs tabs-icon-left">
+    <a class="tab-item" ng-click="goPrevious()">
+        <i class="icon ion-arrow-left-c"></i>
+        Prev
+    </a>
+    <a class="tab-item" ng-click="goNext()">
+        <i class="icon ion-arrow-right-c"></i>
+        Next
+    </a>
+</div>
+
+<ion-scroll zooming="true" direction="xy" class="has-header">
+    <canvas class="padding rotate0" id="pdf"></canvas>
+</ion-scroll>
