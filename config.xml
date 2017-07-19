@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.newapp119293" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.QuranHurufApp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Huruf</name>
   <description>An awesome Ionic/Cordova app.</description>
   <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
@@ -13,6 +13,18 @@
   <allow-intent href="sms:*"/>
   <allow-intent href="mailto:*"/>
   <allow-intent href="geo:*"/>
+    <access origin="http://*.youtube.com" />
+  <access origin="https://*.youtube.com" />
+  <access origin="http://*.ytimg.com" />
+  <access origin="https://*.ytimg.com" />
+  <allow-navigation href="*://*youtube.com" />
+  <allow-navigation href="*youtube*" />
+  <allow-navigation href="*ytimg*" />
+  <allow-navigation href="https://*youtube.com/*"/>
+   <preference name="AllowInlineMediaPlayback" value="true" />
+  <preference name="MediaPlaybackRequiresUserAction" value="false" />
+  <preference name="OpenAllWhitelistURLsInWebView" value="true" />
+  <preference name="YouTubeDataApiKey" value="AIzaSyCgv-dB__V8wvv7s0-c71dXIvdvq4kCbL4" />
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
