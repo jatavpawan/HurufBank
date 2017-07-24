@@ -6,5 +6,8 @@
   },
   "dependencies": {
     "angular-pdf": "^2.0.0"
+  },
+  "resolutions": {
+    "angular": "^1.6.2"
   }
 }

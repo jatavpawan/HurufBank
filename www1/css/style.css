@@ -1,0 +1,44 @@
+/* Empty. Add your own CSS if you like */
+ 
+
+span.px1 {
+    display: block;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.pdfnexts, .pdfPrevious {
+    border-color: transparent;
+    background-color: #f8f8f8;
+    color: #444;
+   
+    margin: 0 0 0 5px;
+   font-size:16px;
+    min-height: -29px !important;
+}
+.pdfZoomOuts, .pdfZoomIns, .pdfRotates {
+    display: none !important;
+}
+ 
+
+canvas.clscnvas {
+    width: 100%;
+}
+.px1 {
+    float: right;
+    width: 80px;
+}
+.pdfpgcount.ng-binding {
+    /* float: right; */
+    /* width: 65px; */
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.pgcnt {
+    /* float: right; */
+    width: 12px;
+    position: absolute;
+    top: -7px;
+    right: 28px;
+}

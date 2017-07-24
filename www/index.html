@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html ng-app="starter">
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
@@ -15,7 +15,7 @@
           .catch(err => console.log('Error', err));
       }
     </script>-->
-    <script src="lib/pdfjs-dist/build/pdf.js"></script>
+
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
@@ -32,21 +32,15 @@
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
-    <script src="lib/angular-pdf-viewer/dist/angular-pdf-viewer.min.js"></script>
-    <!--<script src="js/controllers.js"></script>-->
 
-    <script src="js/Quran/Main/Quran.main.controller.js"></script>
-    <script src="js/Quran/Main/Quran.main.module.js"></script>
-    <script src="js/Quran/Audio/Quran.Audio.controller.js"></script>
-    <script src="js/Quran/Audio/Quran.Audio.module.js"></script>
-    <script src="js/Quran/PDF/Quran.pdf.controller.js"></script>
-    <script src="js/Quran/PDF/Quran.pdf.module.js"></script>
-    <script src="js/Quran/Video/Quran.Video.controller.js"></script>
-    <script src="js/Quran/Video/Quran.Video.module.js"></script>
     <script src="js/services.js"></script>
- 
-</head> 
-<body  ng-controller="Quran.pdf.controller">
+    <script src="lib/angular-pdf-viewer/dist/angular-pdf-viewer.min.js"></script>
+    <script src="controller/DashCtrl.controller.js"></script>
+    <script src="controller/AccountCtrl.Controller.js"></script>
+    <script src="controller/ChatsCtrl.Controller.js"></script>
+    <script src="controller/ChatDetailCtrl.controller.js"></script>
+</head>
+<body ng-app="starter">
     <!--
       The nav bar that will be updated as we navigate between views.
     -->
@@ -54,7 +48,6 @@
         <ion-nav-back-button>
         </ion-nav-back-button>
     </ion-nav-bar>
-  
     <!--
       The views will be rendered in the <ion-nav-view> directive below
       Templates are in the /templates folder (but you could also
