@@ -5,9 +5,10 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.services','pdf', 'Quran.pdf.Module',
-    'Quran.Video.module', 'Quran.Audio.module', 'ChatDetail.module'])
-
+angular.module('starter', ['ionic', 'ionic-toast','starter.services','pdf', 'Quran.pdf.Module',
+    'Quran.Video.module', 'Quran.Audio.module', 'ChatDetail.module',
+'login.module.controller', 'registration.module.controller', 'main.module.controller', 'http.service.module'
+])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -30,57 +31,72 @@ angular.module('starter', ['ionic', 'starter.services','pdf', 'Quran.pdf.Module'
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
-  $stateProvider
+    $stateProvider
 
-  // setup an abstract state for the tabs directive
-    .state('tab', {
-    url: '/tab',
-    abstract: true,
-    templateUrl: 'templates/tabs.html'
-  })
+    // setup an abstract state for the tabs directive
+      .state('tab', {
+          url: '/tab',
+          abstract: true,
+          templateUrl: 'templates/tabs.html'
+      })
 
-  // Each tab has its own nav history stack:
+    // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
-    views: {
-      'tab-dash': {
-        templateUrl: 'templates/Quran.pdf.html',
-        controller: 'Quran.pdf.Controller'
-      }
-    }
-  })
-
-  .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-            templateUrl: 'templates/Quran.Video.html',
-            controller: 'Quran.Video.Controller'
+    .state('tab.dash', {
+        url: '/dash',
+        views: {
+            'tab-dash': {
+                templateUrl: 'templates/Quran.pdf.html',
+                controller: 'Quran.pdf.Controller'
+            }
         }
-      }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
     })
 
-  .state('tab.account', {
-    url: '/account',
-    views: {
-      'tab-account': {
-        templateUrl: 'templates/Quran.Audio.html',
-        controller: 'Quran.Audio.Controller'
-      }
-    }
-  });
+    .state('tab.chats', {
+        url: '/chats',
+        views: {
+            'tab-chats': {
+                templateUrl: 'templates/Quran.Video.html',
+                controller: 'Quran.Video.Controller'
+            }
+        }
+    })
+      .state('tab.chat-detail', {
+          url: '/chats/:chatId',
+          views: {
+              'tab-chats': {
+                  templateUrl: 'templates/chat-detail.html',
+                  controller: 'ChatDetailCtrl'
+              }
+          }
+      })
+
+    .state('tab.account', {
+        url: '/account',
+        views: {
+            'tab-account': {
+                templateUrl: 'templates/Quran.Audio.html',
+                controller: 'Quran.Audio.Controller'
+            }
+        }
+    }).state('login', {
+        url: '/login',
+        templateUrl: 'templates/login.html',
+        controller: 'login.controller as l',
+    }).state('registration', {
+        url: '/registration',
+        templateUrl: 'templates/registration.html',
+        controller: 'registration.controller',
+    });
+
+
+
+
+
+  
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+ // $urlRouterProvider.otherwise('/tab/dash');
+ $urlRouterProvider.otherwise('main');
 
 });
