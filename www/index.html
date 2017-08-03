@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">
     <title></title>
 
     <link rel="manifest" href="manifest.json">
@@ -44,7 +45,7 @@
     <script src="controller/login.controller.js"></script>
     <script src="controller/main.controller.js"></script>
     <script src="controller/registration.controller.js"></script>
-    <script src="controller/myaccount.controller.js"></script>
+    <script src="controller/account.controller.js"></script>
 </head>
 <body ng-app="starter" ng-controller="main">
     <!--
@@ -77,23 +78,23 @@
         <ion-nav-view></ion-nav-view>
         <ion-footer-bar align-title="center" class="bar-custom {{loginStatus? '':'ng-hide'}}">
         <div class="tabs tabs-icon-top">
-            <a class="tab-item {{footerIcoSelection==1? 'icoActive':''}}" ng-click="SelectTab(1);">
+            <a href="#/tab/dash" class="tab-item {{footerIcoSelection==1? 'icoActive':''}}" ng-click="SelectTab(1);">
                 <i class="icon ion-home"></i>
                 Quran
             </a>
-            <a class="tab-item {{footerIcoSelection==2? 'icoActive':''}}" ng-click="SelectTab(2);">
+            <a href="#/tab/dash" class="tab-item {{footerIcoSelection==2? 'icoActive':''}}" ng-click="SelectTab(2);">
                 <i class="icon ion-star"></i>
                 Para
             </a>
-            <a class="tab-item  {{footerIcoSelection==3? 'icoActive':''}}" ng-click="SelectTab(3);">
+            <a href="#/tab/dash" class="tab-item  {{footerIcoSelection==3? 'icoActive':''}}" ng-click="SelectTab(3);">
                 <i class="icon ion-gear-a"></i>
                 Surah
             </a>
-             <a class="tab-item  {{footerIcoSelection==4? 'icoActive':''}}" ng-click="SelectTab(4);">
+             <a href="#/tab/dash" class="tab-item  {{footerIcoSelection==4? 'icoActive':''}}" ng-click="SelectTab(4);">
                 <i class="icon ion-gear-a"></i>
                 Community
             </a>
-             <a ui-sref="myaccount" class="tab-item  {{footerIcoSelection==5? 'icoActive':''}}" ng-click="SelectTab(5);">
+             <a class="tab-item  {{footerIcoSelection==5? 'icoActive':''}}" ng-click="SelectTab(5);">
                 <i class="icon ion-gear-a"></i>
                 My Account
             </a>

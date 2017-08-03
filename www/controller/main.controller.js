@@ -6,7 +6,7 @@
       $rootScope.footerIcoSelection=tabId;
       if(tabId==5)
         {
-        //  $state.go('myaccount')
+          $state.go('myaccount')
         }
     }
     $state.go('login')

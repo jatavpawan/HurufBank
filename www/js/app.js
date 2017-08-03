@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'ionic-toast','starter.services','pdf', 'Quran.pdf.Module',
     'Quran.Video.module', 'Quran.Audio.module', 'ChatDetail.module',
-'login.module.controller', 'registration.module.controller','myaccount.module.controller', 'main.module.controller', 'http.service.module'
+'login.module.controller', 'registration.module.controller','account.module.controller', 'main.module.controller', 'http.service.module'
 ])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -90,7 +90,7 @@ angular.module('starter', ['ionic', 'ionic-toast','starter.services','pdf', 'Qur
     }).state('myaccount', {
         url: '/myaccount',
         templateUrl: 'templates/myaccount.html',
-        controller: 'myaccount.controller',
+        controller: 'account.controller',
     });
 
 

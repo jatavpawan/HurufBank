@@ -1,7 +1,28 @@
 <ion-view view-title="{{footerIcoSelection==1? 'Quran':footerIcoSelection==2? 'Para':footerIcoSelection==3? 'Surah':''}} Audio ">
   <ion-content>
 
-      <audio controls="" preload="none">
+
+ <div class="list card" ng-repeat="audio in audioTracks">
+ 
+          <div class="item item-avatar">
+            <img src="http://findicons.com/files/icons/2711/free_icons_for_windows8_metro/512/audio_wave.png">
+            <h2>{{audio.title}}</h2>
+            <p>{{audio.genre}}</p>
+          </div>
+ 
+          <div class="item tabs tabs-secondary tabs-icon-left">
+            <a class="tab-item" href="#" ng-click="playTrack(audio.track, audio.key)">
+              <i class="icon ion-ios-play"></i>
+              Play
+            </a>
+            <a class="tab-item" href="#" ng-click="stopTrack()">
+              <i class="icon ion-android-checkbox-blank"></i>
+              Stop
+            </a>
+          </div>
+ 
+        </div>
+      <!--<audio controls="" preload="none">
           <source src="https://royalwap.net/128-4878/Mera%20Dil%20Bhi%20Kitna%20Pagal%20Hai.mp3" type="audio/mpeg">
           Your browser does not support the audio element.
       </audio>
@@ -12,7 +33,7 @@
       <audio controls="" preload="none">
           <source src="https://royalwap.net/128-389689/Lag%20Ja%20Gale%20Ke%20Phir.mp3" type="audio/mpeg">
           Your browser does not support the audio element.
-      </audio>
+      </audio>-->
 
       <!--<p>
           <a ng-click="CallAudio('http://audio.ibeat.org/content/p1rj1s/p1rj1s_-_rockGuitar.mp3')">Play Guitar</a>
