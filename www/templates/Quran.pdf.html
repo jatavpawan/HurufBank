@@ -1,6 +1,5 @@
-<ion-view view-title="Quran ">
+<ion-view view-title="{{footerIcoSelection==1? 'Quran':footerIcoSelection==2? 'Para':footerIcoSelection==3? 'Surah':''}} Document">
   <ion-content class="padding">
-  
       <pdf-viewer delegate-handle="my-pdf-container"
                   url="pdfUrl"
                   scale="1"

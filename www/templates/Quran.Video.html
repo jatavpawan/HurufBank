@@ -1,6 +1,5 @@
-<ion-view view-title="Quran Video">
+<ion-view view-title="{{footerIcoSelection==1? 'Quran':footerIcoSelection==2? 'Para':footerIcoSelection==3? 'Surah':''}} Video">
     <ion-content>
-
         <div class="row">
             <div class="col col-50">
                 <img src="https://img.youtube.com/vi/SJwlm9ile7A/maxresdefault.jpg" width="80%" ng-click="CallVideo('SJwlm9ile7A')" />
@@ -30,21 +29,6 @@
                 <img src="https://img.youtube.com/vi/6WvHMNuhH3Y/maxresdefault.jpg" width="80%" ng-click="CallVideo('6WvHMNuhH3Y')" />
             </div>
 
-        </div>
-
-        <div class="tabs tabs-icon-top">
-            <a class="tab-item">
-                <i class="icon ion-home"></i>
-                Home
-            </a>
-            <a class="tab-item">
-                <i class="icon ion-star"></i>
-                Favorites
-            </a>
-            <a class="tab-item">
-                <i class="icon ion-gear-a"></i>
-                Settings
-            </a>
         </div>
     </ion-content>
 
