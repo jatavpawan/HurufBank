@@ -4,10 +4,10 @@
     $rootScope.footerIcoSelection = 1;
     $scope.SelectTab = function (tabId) {
       $rootScope.footerIcoSelection=tabId;
-      if(tabId==5)
-        {
-          $state.go('myaccount')
-        }
+      // if(tabId==5)
+      //   {
+      //     $state.go('myaccount')
+      //   }
     }
     $state.go('login')
 });
