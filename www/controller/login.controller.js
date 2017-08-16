@@ -10,7 +10,7 @@
         }
         else {
          
-            httpServices.post('/LoginUser', data).then(function (response) {
+            httpServices.post('LoginUser', data).then(function (response) {
                 if (response.data.Source != 0) {
                     ionicToast.show(response.data.Success, 'bottom', false, 2500);
                
@@ -19,7 +19,7 @@
                     ionicToast.show(response.data.Success, 'bottom', false, 2500);
                     localStorage.setItem("UserID", response.data.Source);
                     
-                    httpServices.get('/GetUserInfo/' + response.data.Source).then(function (dat) {
+                    httpServices.get('/GetUserInfo?UserID=' + response.data.Source).then(function (dat) {
                       //  alert(JSON.stringify(dat));
                        $rootScope.loginStatus=true;
                         $rootScope.profilePicture ="http://smartservicesapp.com/Uploads/profilepic/"+ dat.data.GetUserInfoResult[0].FilePathName;

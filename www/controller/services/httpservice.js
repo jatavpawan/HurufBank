@@ -1,8 +1,8 @@
 ﻿angular.module('http.service.module', []).service('httpServices', ['$q', '$http', '$ionicLoading', '$rootScope', '$state', function ($q, $http, $ionicLoading, $rootScope, $state) {
 
    
-  var url = 'http://smartservicesapp.com/Service.svc'; 
-  //var url = 'http://localhost:59592/Service.svc';
+  //var url = 'http://smartservicesapp.com/Service.svc'; 
+    var url = 'http://websvc.smartservicesapp.com/';
 
   this.get=function(urlres){
       var q = $q.defer();
@@ -26,7 +26,7 @@
           q.resolve(result);
       }, function (error) {
           q.reject(error);
-          alert(JSON.stringify(error));
+        console.log(JSON.stringify(error));
       });
       return q.promise;
   }
