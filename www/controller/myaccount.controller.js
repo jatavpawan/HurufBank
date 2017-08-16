@@ -3,7 +3,7 @@ angular.module('myaccount.module.controller', []).controller('myaccount.controll
     $scope.data = {};
     $scope.dataSrc = 'http://smartservicesapp.com/Uploads/profilepic/';
     var userId = localStorage.getItem("UserID");
-    httpServices.get('/GetUserInfo/' + userId).then(function (response) {
+    httpServices.get('/GetUserInfo?UserID=' + userId).then(function (response) {
         if (response.data.GetUserInfoResult.length > 1)
         { $scope.data = response.data.GetUserInfoResult[0]; }
         else {
@@ -64,7 +64,7 @@ angular.module('myaccount.module.controller', []).controller('myaccount.controll
             console.log('updates come here');
             console.log($scope.FileName)
             if ($scope.FileName == '') {
-                httpServices.post('/RegisterUser', data).then(function (suc) {
+                httpServices.post('RegisterUser', data).then(function (suc) {
                     ionicToast.show('Updated Successfully', 'bottom', false, 2500);
                     $state.go('tab.dash', null, { reload: true });
                 }, function (er) {
@@ -141,7 +141,7 @@ angular.module('myaccount.module.controller', []).controller('myaccount.controll
             data.RegistrationID = localStorage.getItem('UserID');
 
 
-        httpServices.post('/ChangePassword ', data).then(function (response) {
+        httpServices.post('ChangePassword ', data).then(function (response) {
             console.log(response);
             //$scope.myPosts = response.data.GetBlogListbyUserIDResult;
             // pagepost++;
