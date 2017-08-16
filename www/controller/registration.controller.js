@@ -47,7 +47,7 @@
           var fileURL = $scope.FileName;
           var options = new FileUploadOptions();
           options.fileKey = "file";
-          options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
+          options.fileName = fileURL.split("/").pop();
           options.mimeType = "text/plain";
 
           var params = {};

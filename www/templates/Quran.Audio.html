@@ -11,14 +11,18 @@
           </div>
  
           <div class="item tabs tabs-secondary tabs-icon-left">
-            <a class="tab-item" href="#" ng-click="playTrack(audio.track, audio.key)">
+            <a ng-show="audio.download" class="tab-item" ng-click="playTrack(audio.track, audio.key)">
               <i class="icon ion-ios-play"></i>
               Play
             </a>
-            <a class="tab-item" href="#" ng-click="stopTrack()">
+            <a ng-show="audio.download"  class="tab-item" ng-click="stopTrack()">
               <i class="icon ion-android-checkbox-blank"></i>
               Stop
             </a>
+             <a ng-hide="audio.download" class="tab-item" ng-click="downloadSong(audio.track)">
+              <i class="icon ion-ios-download"></i>
+              Download
+            </a>-
           </div>
  
         </div>

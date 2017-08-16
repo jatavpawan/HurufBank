@@ -3,9 +3,13 @@
     "version": "1.1.1",
     "description": "newapp: An Ionic project",
     "dependencies": {
+        "com.hutchind.cordova.plugins.streamingmedia": "~0.1.4",
+        "cordova": "^7.0.1",
         "cordova-android": "^6.2.3",
         "cordova-plugin-console": "1.0.5",
         "cordova-plugin-device": "1.1.4",
+        "cordova-plugin-file": "~4.3.3",
+        "cordova-plugin-file-transfer": "^1.6.3",
         "cordova-plugin-nativeaudio": "^3.0.9",
         "cordova-plugin-splashscreen": "~4.0.1",
         "cordova-plugin-statusbar": "2.2.1",
@@ -16,8 +20,7 @@
         "gulp-minify-css": "^0.3.0",
         "gulp-rename": "^1.2.0",
         "gulp-sass": "^2.0.4",
-        "ionic-plugin-keyboard": "~2.2.1",
-        "com.hutchind.cordova.plugins.streamingmedia": "~0.1.4"
+        "ionic-plugin-keyboard": "~2.2.1"
     },
     "devDependencies": {
         "@ionic/cli-plugin-cordova": "1.6.1",
@@ -47,7 +50,9 @@
             "cordova-plugin-whitelist": {},
             "ionic-plugin-keyboard": {},
             "cordova-plugin-nativeaudio": {},
-            "com.hutchind.cordova.plugins.streamingmedia": {}
+            "com.hutchind.cordova.plugins.streamingmedia": {},
+            "cordova-plugin-file": {},
+            "cordova-plugin-file-transfer": {}
         },
         "platforms": [
             "android"
