@@ -11,8 +11,12 @@
     }
     var UIDs = localStorage.getItem("UserID");
     console.log(UIDs);
-    if (UIDs == null) {
+    if (UIDs == null || UIDs == "null") {
+        $rootScope.loginStatus = false;
         $state.go('login');
     }
-    else { $state.go('tab.dash'); }
+    else {
+        $rootScope.loginStatus = true;
+        $state.go('tab.dash');
+    }
 });

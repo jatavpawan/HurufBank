@@ -60,7 +60,7 @@
           {
 
           }
-          ft.upload(fileURL, encodeURI("http://smartservicesapp.com/PicUpload.ashx"), function (r) {
+          ft.upload(fileURL, encodeURI("http://websvc.smartservicesapp.com/PicUpload.ashx"), function (r) {
               ionicToast.show('Registered Successfully', 'bottom', false, 2500);
               
               $rootScope.profilePicture = "data:image/jpeg;base64," + r.response;

@@ -1,13 +1,13 @@
 angular.module('myaccount.module.controller', []).controller('myaccount.controller', function ($scope, $state, $ionicPopover, httpServices, ionicToast, $rootScope, $ionicHistory,$ionicLoading) {
     $scope.dataSrc = "img/classprofile.png"
     $scope.data = {};
-    $scope.dataSrc = 'http://smartservicesapp.com/Uploads/profilepic/';
+    $scope.dataSrc = 'http://websvc.smartservicesapp.com/Uploads/profilepic/';
     var userId = localStorage.getItem("UserID");
     httpServices.get('/GetUserInfo?UserID=' + userId).then(function (response) {
-        if (response.data.GetUserInfoResult.length > 1)
-        { $scope.data = response.data.GetUserInfoResult[0]; }
+        if (response.data.length > 1)
+        { $scope.data = response.data[0]; }
         else {
-            $scope.data = response.data.GetUserInfoResult;
+            $scope.data = response.data;
         }
         $scope.dataSrc += $scope.data.FilePathName;
     }, function (error) {
@@ -26,6 +26,14 @@ angular.module('myaccount.module.controller', []).controller('myaccount.controll
         });
 
     }
+    
+    $scope.logout = function () {
+        localStorage.setItem("UserID", null);
+        localStorage.setItem('GCMID', null);
+        $rootScope.loginStatus = false;
+        $state.go('login');
+    }
+
     $scope.takeFromCamera = function () {
         $scope.popover.hide();
         navigator.camera.getPicture(profilePictureSuccess, profilePictureFail, {
@@ -73,10 +81,9 @@ angular.module('myaccount.module.controller', []).controller('myaccount.controll
             }
             else {
 
-                ft.upload(fileURL, encodeURI("http://smartservicesapp.com/PicUpload.ashx"), function (r) {
+                ft.upload(fileURL, encodeURI("http://websvc.smartservicesapp.com/PicUpload.ashx"), function (r) {
+                    alert(JSON.stringify(r));
                     if ($scope.pass) {
-
-
                         ionicToast.show('Registered Successfully', 'bottom', false, 2500);
                     } else {
                         ionicToast.show('Updated Details Successfully', 'bottom', false, 2500);

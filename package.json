@@ -4,11 +4,9 @@
     "description": "newapp: An Ionic project",
     "dependencies": {
         "com.hutchind.cordova.plugins.streamingmedia": "~0.1.4",
-<<<<<<< HEAD
         "cordova": "^7.0.1",
-=======
->>>>>>> 29e48b080680d57c7aa9fa807069ece92734d9d3
         "cordova-android": "^6.2.3",
+        "cordova-plugin-camera": "^2.4.1",
         "cordova-plugin-console": "1.0.5",
         "cordova-plugin-device": "1.1.4",
         "cordova-plugin-file": "~4.3.3",
@@ -55,7 +53,8 @@
             "cordova-plugin-nativeaudio": {},
             "com.hutchind.cordova.plugins.streamingmedia": {},
             "cordova-plugin-file": {},
-            "cordova-plugin-file-transfer": {}
+            "cordova-plugin-file-transfer": {},
+            "cordova-plugin-camera": {}
         },
         "platforms": [
             "android"
