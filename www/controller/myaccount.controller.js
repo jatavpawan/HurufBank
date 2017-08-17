@@ -1,4 +1,4 @@
-angular.module('myaccount.module.controller', []).controller('myaccount.controller', function ($scope, $state, $ionicPopover, httpServices, ionicToast, $rootScope, $ionicHistory, $ionicLoading) {
+angular.module('myaccount.module.controller', []).controller('myaccount.controller', function ($scope,$location, $state, $ionicPopover, httpServices, ionicToast, $rootScope, $ionicHistory, $ionicLoading) {
     $scope.dataSrc = "img/classprofile.png"
     $scope.data = {};
     $scope.dataSrc = 'http://smartservicesapp.com/Uploads/profilepic/';
@@ -28,7 +28,8 @@ angular.module('myaccount.module.controller', []).controller('myaccount.controll
     }
      $scope.logout = function () {
         localStorage.setItem("UserID", null);
-        $state.go('login');
+         $rootScope.loginStatus=false;
+         $location.path('/login');
     }
     $scope.takeFromCamera = function () {
         $scope.popover.hide();

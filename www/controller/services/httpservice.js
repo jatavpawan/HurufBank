@@ -3,7 +3,7 @@
    
   //var url = 'http://smartservicesapp.com/Service.svc'; 
     var url = 'http://websvc.smartservicesapp.com/';
-
+ var url = 'http://localhost:61331/';
   this.get=function(urlres){
       var q = $q.defer();
       $ionicLoading.show();

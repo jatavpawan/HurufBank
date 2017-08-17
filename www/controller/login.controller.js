@@ -21,9 +21,9 @@
                     localStorage.setItem("loginStatus", true);
                     httpServices.get('/GetUserInfo?UserID=' + response.data.Source).then(function (dat) {
                       //  alert(JSON.stringify(dat));
-                      // $rootScope.loginStatus=true;
-                        $rootScope.profilePicture ="http://smartservicesapp.com/Uploads/profilepic/"+ dat.data.GetUserInfoResult[0].FilePathName;
-                        $rootScope.profileName = "Hello! " + dat.data.GetUserInfoResult[0].FirstName;
+                       $rootScope.loginStatus=true;
+                        $rootScope.profilePicture ="http://localhost:61331/Uploads/profilepic/"+ dat.data[0].FilePathName;
+                        $rootScope.profileName = "Hello! " + dat.data[0].FirstName;
                       //  alert("Hello! " + dat.data.GetUserInfoResult[0].FirstName)
                         $state.go('tab.dash');
                       // $urlRouterProvider.otherwise('main');
