@@ -1,4 +1,4 @@
-﻿angular.module('Quran.Audio.module', []).controller('Quran.Audio.Controller', function ($scope, $ionicPlatform, $cordovaFileTransfer) {
+﻿angular.module('Quran.Audio.module', []).controller('Quran.Audio.Controller', function ($scope,$rootScope,$state, $ionicPlatform, $cordovaFileTransfer) {
   
   var audio = [{
     id: 1,
@@ -100,4 +100,8 @@
       $scope.player.key = ''; // Remove a current track on unload, it will break an app if we try to unload it again in playTrack function
     }
   };
+  $scope.AddFile=function(){ 
+      $rootScope.TabText="Audio";
+     $state.go("addfile");
+    };
 });

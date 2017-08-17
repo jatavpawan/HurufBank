@@ -1,6 +1,6 @@
 ﻿angular.module('Quran.Video.module', [])
 
-.controller('Quran.Video.Controller', function ($scope, Chats) {
+.controller('Quran.Video.Controller', function ($scope,$rootScope,$state, Chats) {
 
     $scope.chats = Chats.all();
     $scope.remove = function (chat) {
@@ -17,5 +17,9 @@
             alert(reason);
         });
 
+    };
+     $scope.AddFile=function(){ 
+      $rootScope.TabText="Video";
+     $state.go("addfile");
     };
 })

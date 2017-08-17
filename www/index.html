@@ -48,6 +48,7 @@
     <script src="controller/registration.controller.js"></script>
     <script src="controller/account.controller.js"></script>
     <script src="controller/myaccount.controller.js"></script>
+     <script src="controller/addfile.controller.js"></script>
 </head>
 <body ng-app="starter" ng-controller="main">
     <!--
@@ -76,8 +77,12 @@
      <ion-nav-bar class="bar-stable">
         <ion-nav-back-button>
         </ion-nav-back-button>
+         
     </ion-nav-bar>
-        <ion-nav-view></ion-nav-view>
+    
+        <ion-nav-view>
+             
+        </ion-nav-view>
         <ion-footer-bar align-title="center" class="bar-custom {{loginStatus? '':'ng-hide'}}">
         <div class="tabs tabs-icon-top">
             <a class="tab-item {{footerIcoSelection==1? 'icoActive':''}}" ng-click="SelectTab(1);">

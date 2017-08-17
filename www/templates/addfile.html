@@ -1,0 +1,29 @@
+<ion-view view-title="Add {{footerIcoSelection==1? 'Quran' :footerIcoSelection==2? 'Para':footerIcoSelection==3? 'Surah':''}} {{TabText}} File">
+    <ion-nav-buttons side="left">
+        <a class="tab-item" ng-click="goBack()">
+            <i class="icon ion-arrow-left-c"></i>
+        </a>
+    </ion-nav-buttons>
+    <ion-content class="ion-contentColor">
+        <div class="list list-inset">
+            <label class="item item-input">
+               <input type="text" placeholder="Title" ng-model="data.FirstName">
+           </label>
+            <ion-list>
+                <ion-radio ng-model="choice" ng-value="'A'">URL</ion-radio>
+                <ion-radio ng-model="choice" ng-value="'B'">Upload</ion-radio>
+            </ion-list>
+            <label class="item item-input">
+               <input type="text" placeholder="URL" ng-model="data.UserName">
+           </label>       
+           <label class="item item-input">
+               <input type="text" placeholder="URL" ng-model="data.UserName">
+           </label>        
+        </div>
+        <div class="row">
+
+            <button class="button button-block button-positive" ng-click="registerUser(data)">Save</button>
+        </div>
+
+    </ion-content>
+</ion-view>
