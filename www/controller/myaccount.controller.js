@@ -1,13 +1,13 @@
-angular.module('myaccount.module.controller', []).controller('myaccount.controller', function ($scope, $state, $ionicPopover, httpServices, ionicToast, $rootScope, $ionicHistory,$ionicLoading) {
+angular.module('myaccount.module.controller', []).controller('myaccount.controller', function ($scope, $state, $ionicPopover, httpServices, ionicToast, $rootScope, $ionicHistory, $ionicLoading) {
     $scope.dataSrc = "img/classprofile.png"
     $scope.data = {};
     $scope.dataSrc = 'http://smartservicesapp.com/Uploads/profilepic/';
     var userId = localStorage.getItem("UserID");
     httpServices.get('/GetUserInfo?UserID=' + userId).then(function (response) {
-        if (response.data.GetUserInfoResult.length > 1)
-        { $scope.data = response.data.GetUserInfoResult[0]; }
+        if (response.data.length > 1)
+        { $scope.data = response.data[0]; }
         else {
-            $scope.data = response.data.GetUserInfoResult;
+            $scope.data = response.data;
         }
         $scope.dataSrc += $scope.data.FilePathName;
     }, function (error) {
@@ -25,6 +25,10 @@ angular.module('myaccount.module.controller', []).controller('myaccount.controll
             mediaType: Camera.MediaType.PICTURE
         });
 
+    }
+     $scope.logout = function () {
+        localStorage.setItem("UserID", null);
+        $state.go('login');
     }
     $scope.takeFromCamera = function () {
         $scope.popover.hide();
@@ -122,8 +126,8 @@ angular.module('myaccount.module.controller', []).controller('myaccount.controll
     $scope.closePopover = function () {
         $scope.popover.hide();
     };
-     $scope.changePassword = function (data) {
-        
+    $scope.changePassword = function (data) {
+
         if (data.reenterpassword.trim() != data.NewPassword.trim()) {
 
             var myPopup = $ionicPopup.confirm({
@@ -141,42 +145,42 @@ angular.module('myaccount.module.controller', []).controller('myaccount.controll
             data.RegistrationID = localStorage.getItem('UserID');
 
 
-        httpServices.post('ChangePassword ', data).then(function (response) {
-            console.log(response);
-            //$scope.myPosts = response.data.GetBlogListbyUserIDResult;
-            // pagepost++;
-            if (response.data.Success == 'Password has been changed successfully') {
+            httpServices.post('ChangePassword ', data).then(function (response) {
+                console.log(response);
+                //$scope.myPosts = response.data.GetBlogListbyUserIDResult;
+                // pagepost++;
+                if (response.data.Success == 'Password has been changed successfully') {
 
 
-                $ionicLoading.show({ template: response.data.Success });
-                setTimeout(function () {
-                    $ionicLoading.hide()
-                    $state.go('dashboard');
-                }, 3000)
-            }
-            else {
-                if (response.data.Success != null || response.data.Success != 'null')
-                {
-
-                $ionicLoading.show({ template: response.data.Success });
-                    setTimeout(function () {
-                        $ionicLoading.hide()
-                    }, 2000)
-                }
-                else {
                     $ionicLoading.show({ template: response.data.Success });
                     setTimeout(function () {
                         $ionicLoading.hide()
-                    }, 2000)
+                        $state.go('dashboard');
+                    }, 3000)
                 }
-            }
-           
-             
-                
-          
-        }, function (error) {
+                else {
+                    if (response.data.Success != null || response.data.Success != 'null') {
 
-        });
+                        $ionicLoading.show({ template: response.data.Success });
+                        setTimeout(function () {
+                            $ionicLoading.hide()
+                        }, 2000)
+                    }
+                    else {
+                        $ionicLoading.show({ template: response.data.Success });
+                        setTimeout(function () {
+                            $ionicLoading.hide()
+                        }, 2000)
+                    }
+                }
+
+
+
+
+            }, function (error) {
+
+            });
         }
     }
+   
 });

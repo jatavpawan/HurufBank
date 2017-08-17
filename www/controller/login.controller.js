@@ -18,10 +18,10 @@
                     $ionicHistory.clearHistory();
                     ionicToast.show(response.data.Success, 'bottom', false, 2500);
                     localStorage.setItem("UserID", response.data.Source);
-                    
+                    localStorage.setItem("loginStatus", true);
                     httpServices.get('/GetUserInfo?UserID=' + response.data.Source).then(function (dat) {
                       //  alert(JSON.stringify(dat));
-                       $rootScope.loginStatus=true;
+                      // $rootScope.loginStatus=true;
                         $rootScope.profilePicture ="http://smartservicesapp.com/Uploads/profilepic/"+ dat.data.GetUserInfoResult[0].FilePathName;
                         $rootScope.profileName = "Hello! " + dat.data.GetUserInfoResult[0].FirstName;
                       //  alert("Hello! " + dat.data.GetUserInfoResult[0].FirstName)

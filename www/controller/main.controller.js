@@ -9,10 +9,12 @@
       //     $state.go('myaccount')
       //   }
     }
+   
     var UIDs = localStorage.getItem("UserID");
     console.log(UIDs);
-    if (UIDs == null) {
+    if (UIDs == "null") {
         $state.go('login');
+        $rootScope.loginStatus=false;
     }
-    else { $state.go('tab.dash'); }
+    else { $state.go('tab.dash'); $rootScope.loginStatus=true;}
 });
