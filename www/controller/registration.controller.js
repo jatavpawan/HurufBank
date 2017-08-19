@@ -1,4 +1,4 @@
-﻿angular.module('registration.module.controller', []).controller('registration.controller', function ($scope, ionicToast,$rootScope, $ionicPopover, $state, httpServices, $ionicLoading) {
+﻿angular.module('registration.module.controller', []).controller('registration.controller', function ($scope, ionicToast,$rootScope, $ionicPopover, $state, httpServices, $ionicLoading, $cordovaCamera) {
     $scope.dataSrc = "img/classprofile.png"
    
     $scope.setProfilePicture = function () {
@@ -60,16 +60,16 @@
           {
 
           }
-          ft.upload(fileURL, encodeURI("http://smartservicesapp.com/PicUpload.ashx"), function (r) {
+          ft.upload(encodeURI("http://websvc.smartservicesapp.com/PicUpload.ashx"),fileURL, function (r) {
               ionicToast.show('Registered Successfully', 'bottom', false, 2500);
               
               $rootScope.profilePicture = "data:image/jpeg;base64," + r.response;
-              $rootScope.loginStatus = true;
+            //  $rootScope.loginStatus = true;
               // alert(JSON.stringify(response));
            
             
               $ionicLoading.hide();
-              $state.go('dashboard', null, { reload: true });
+              $state.go('login', null, { reload: true });
           }, function (error) {
               alert("An error has occurred: Code = " + error.code);
               alert("upload error source " + error.source);
