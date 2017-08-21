@@ -1,4 +1,4 @@
-﻿angular.module('main.module.controller', []).controller('main', function ($scope,$location, $rootScope, $state, httpServices, $ionicLoading, ionicToast, $rootScope) {
+﻿angular.module('main.module.controller', []).controller('main', function ($scope,$stateParams,$location, $rootScope, $state, httpServices, $ionicLoading, ionicToast, $rootScope) {
 
     $rootScope.loginStatus = false;
     $rootScope.footerIcoSelection = 1;
@@ -19,6 +19,6 @@
     }
     else { $rootScope.loginStatus = true;
         //  $state.go('tab.dash'); 
-         $location.path('/tab/dash');
+         $location.path('/tab/dash/1');
     }
 });

@@ -1,4 +1,4 @@
-﻿angular.module('registration.module.controller', []).controller('registration.controller', function ($scope, ionicToast,$rootScope, $ionicPopover, $state, httpServices, $ionicLoading, $cordovaCamera) {
+﻿angular.module('registration.module.controller', []).controller('registration.controller', function ($scope, ionicToast,$rootScope, $ionicPopover, $state, httpServices, $ionicLoading, $cordovaCamera,$ionicHistory) {
     $scope.dataSrc = "img/classprofile.png"
    
     $scope.setProfilePicture = function () {
@@ -29,18 +29,6 @@
       
       document.addEventListener("deviceready", onDeviceReady, false);
   
-    
-
-     
-      //httpServices.post('/RegisterUser', reqData).then(function (response) {
-        
-      //    ionicToast.show('Successfully Registered', 'bottom', true, 2500);
-      //    $state.go('dashboard');
-      //}, function (error) {
-
-      //    ionicToast.show('Some error occured', 'bottom', true, 2500);
-      //})
-
       function onDeviceReady() {
 
           
@@ -60,7 +48,7 @@
           {
 
           }
-          ft.upload(encodeURI("http://websvc.smartservicesapp.com/PicUpload.ashx"),fileURL, function (r) {
+          ft.upload(fileURL,encodeURI("http://websvc.smartservicesapp.com/PicUpload.ashx"), function (r) {
               ionicToast.show('Registered Successfully', 'bottom', false, 2500);
               
               $rootScope.profilePicture = "data:image/jpeg;base64," + r.response;
@@ -103,4 +91,8 @@
    $scope.closePopover = function () {
        $scope.popover.hide();
    };
+   $scope.goBack=function()
+{
+    $ionicHistory.goBack();
+}
 })

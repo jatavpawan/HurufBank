@@ -1,5 +1,15 @@
 
 <ion-view>
+      <ion-nav-buttons side="left">
+        <a class="tab-item" ng-click="goBack()">
+            <i class="icon ion-arrow-left-c"></i>
+        </a>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <a class="tab-item" ng-click="logout()">
+            <i class="icon ion-log-out icoActive"></i>
+        </a>
+    </ion-nav-buttons>
    <ion-content class="ion-contentColor">
    
        <div class="center">
@@ -38,7 +48,7 @@
        </div>
        <div class="row">
           
-           <button class="button button-block button-positive" ng-click="registerUser(data)">Update</button>
+           <button class="button button-block button-positive" ng-click="registerUser(data)">Update Profile</button>
        </div>
         <div class="row">
           
@@ -60,15 +70,11 @@
         </div>
           <div class="row">
           
-        <button class="button button-block button-positive" style="margin:0" ng-click="changePassword(data)">Submit</button>
+        <button class="button button-block button-positive" style="margin:0" ng-click="changePassword(data)">Change Password</button>
        </div>
-       <div class="list">
-           <label class="item">
-               <button ng-click="logout()">Logout</button>
-           </label>
-           <label class="item item-input">
-               
-           </label>
-       </div>
+     <br/>
+      <br/>
+     
    </ion-content>
+ 
 </ion-view>

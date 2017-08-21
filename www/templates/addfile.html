@@ -7,22 +7,22 @@
     <ion-content class="ion-contentColor">
         <div class="list list-inset">
             <label class="item item-input">
-               <input type="text" placeholder="Title" ng-model="data.FirstName">
+               <input type="text" placeholder="Title" ng-model="data.title">
            </label>
-            <ion-list>
-                <ion-radio ng-model="choice" ng-value="'A'">URL</ion-radio>
-                <ion-radio ng-model="choice" ng-value="'B'">Upload</ion-radio>
-            </ion-list>
-            <label class="item item-input">
-               <input type="text" placeholder="URL" ng-model="data.UserName">
-           </label>       
            <label class="item item-input">
-               <input type="text" placeholder="URL" ng-model="data.UserName">
+                Want to Upload a file Or Provide Link       
+            </label>  
+          <div class="row">
+             <button class="button icon-left button-block ion-upload" ng-click="">Upload File</button>&nbsp;
+                <button class="button icon-left button-block ion-link" ng-click="showHideLink()">Enter Link</button>
+          </div> 
+           <label class="item item-input" ng-show="link">
+             <input type="text" placeholder="Paste File URL" ng-model="data.title">
            </label>        
         </div>
         <div class="row">
 
-            <button class="button button-block button-positive" ng-click="registerUser(data)">Save</button>
+            <button class="button button-block button-positive">Save</button>
         </div>
 
     </ion-content>

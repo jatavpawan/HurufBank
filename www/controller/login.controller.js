@@ -1,6 +1,8 @@
-﻿angular.module('login.module.controller', []).controller('login.controller', function ($scope, $state, httpServices, ionicToast, $rootScope, $ionicHistory) {
+﻿angular.module('login.module.controller', []).controller('login.controller', function ($scope, $state, httpServices, ionicToast, $rootScope, $ionicHistory,$timeout) {
     var count = 0;
-     
+      $timeout(function () {
+          $ionicHistory.clearCache();
+      }, 200) 
    
     $scope.passhow = false;
     $scope.authenticateUser = function (data) {

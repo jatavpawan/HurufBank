@@ -5,10 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ionic-toast', 'starter.services', 'pdf', 'Quran.pdf.Module',
+angular.module('starter', ['ionic', 'ui.router', 'ionic-toast', 'starter.services', 'pdf', 'Quran.pdf.Module',
     'Quran.Video.module',
     'Quran.Audio.module',
-    'ChatDetail.module',
     'ngCordova',
     'login.module.controller',
     'registration.module.controller',
@@ -18,8 +17,31 @@ angular.module('starter', ['ionic', 'ionic-toast', 'starter.services', 'pdf', 'Q
     'http.service.module',
     'addfile.module.controller'
 ])
-    .run(function ($ionicPlatform) {
+    .run(function ($rootScope, $ionicPlatform, $state, $ionicHistory,$location) {
         $ionicPlatform.ready(function () {
+
+            $ionicPlatform.registerBackButtonAction(function (e) {
+
+                if ($state.current.name == 'login') {
+                    ionic.Platform.exitApp();
+
+                }
+                else if ($state.current.name == 'myaccount') {
+                    $rootScope.loginStatus = true;
+                    $rootScope.footerIcoSelection = 1;
+                     $state.go('tab.dash');
+                   // $location.path('/tab/dash/1');
+                }
+                else if ($state.current.name == 'addfile') {
+                    $rootScope.loginStatus = true;    
+                     $ionicHistory.goBack();
+                }
+                else if ($ionicHistory.backView()) {
+                    $ionicHistory.goBack();
+                }
+                e.preventDefault();
+                return false;
+            }, 101);
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
             if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -52,7 +74,7 @@ angular.module('starter', ['ionic', 'ionic-toast', 'starter.services', 'pdf', 'Q
             // Each tab has its own nav history stack:
 
             .state('tab.dash', {
-                url: '/dash',
+                url: '/dash/:tabid',
                 views: {
                     'tab-dash': {
                         templateUrl: 'templates/Quran.pdf.html',
@@ -60,9 +82,8 @@ angular.module('starter', ['ionic', 'ionic-toast', 'starter.services', 'pdf', 'Q
                     }
                 }
             })
-
             .state('tab.chats', {
-                url: '/chats',
+                url: '/chats/:tabid',
                 views: {
                     'tab-chats': {
                         templateUrl: 'templates/Quran.Video.html',
@@ -70,18 +91,8 @@ angular.module('starter', ['ionic', 'ionic-toast', 'starter.services', 'pdf', 'Q
                     }
                 }
             })
-            .state('tab.chat-detail', {
-                url: '/chats/:chatId',
-                views: {
-                    'tab-chats': {
-                        templateUrl: 'templates/chat-detail.html',
-                        controller: 'ChatDetailCtrl'
-                    }
-                }
-            })
-
             .state('tab.account', {
-                url: '/account',
+                url: '/account/:tabid',
                 views: {
                     'tab-account': {
                         templateUrl: 'templates/Quran.Audio.html',
@@ -89,18 +100,22 @@ angular.module('starter', ['ionic', 'ionic-toast', 'starter.services', 'pdf', 'Q
                     }
                 }
             }).state('login', {
+                cache: false,
                 url: '/login',
                 templateUrl: 'templates/login.html',
                 controller: 'login.controller as l',
             }).state('registration', {
+                cache: false,
                 url: '/registration',
                 templateUrl: 'templates/registration.html',
                 controller: 'registration.controller',
             }).state('myaccount', {
+                cache: false,
                 url: '/myaccount',
                 templateUrl: 'templates/myaccount.html',
                 controller: 'myaccount.controller',
             }).state('addfile', {
+                cache: false,
                 url: '/addfile',
                 templateUrl: 'templates/addfile.html',
                 controller: 'addfile.controller',

@@ -1,13 +1,14 @@
-angular.module('myaccount.module.controller', []).controller('myaccount.controller', function ($scope,$location, $state, $ionicPopover, httpServices, ionicToast, $rootScope, $ionicHistory, $ionicLoading) {
+angular.module('myaccount.module.controller', []).controller('myaccount.controller', function ($scope,$location,$timeout, $state, $ionicPopover, httpServices, ionicToast, $rootScope, $ionicHistory, $ionicLoading) {
+    $rootScope.loginStatus = false;
     $scope.dataSrc = "img/classprofile.png"
     $scope.data = {};
-    $scope.dataSrc = 'http://smartservicesapp.com/Uploads/profilepic/';
+    $scope.dataSrc = 'http://websvc.smartservicesapp.com/Uploads/profilepic/';
     var userId = localStorage.getItem("UserID");
     httpServices.get('/GetUserInfo?UserID=' + userId).then(function (response) {
         if (response.data.length > 1)
         { $scope.data = response.data[0]; }
         else {
-            $scope.data = response.data;
+            $scope.data = response.data[0];
         }
         $scope.dataSrc += $scope.data.FilePathName;
     }, function (error) {
@@ -27,9 +28,13 @@ angular.module('myaccount.module.controller', []).controller('myaccount.controll
 
     }
      $scope.logout = function () {
-        localStorage.setItem("UserID", null);
+        localStorage.removeItem("UserID");
          $rootScope.loginStatus=false;
-         $location.path('/login');
+          $timeout(function () {
+          $ionicHistory.clearCache();
+      }, 200);
+         //$location.path('/login');
+           $state.go('login', null, { reload: true });
     }
     $scope.takeFromCamera = function () {
         $scope.popover.hide();
@@ -78,7 +83,7 @@ angular.module('myaccount.module.controller', []).controller('myaccount.controll
             }
             else {
 
-                ft.upload(fileURL, encodeURI("http://smartservicesapp.com/PicUpload.ashx"), function (r) {
+                ft.upload(fileURL, encodeURI("http://websvc.smartservicesapp.com/PicUpload.ashx"), function (r) {
                     if ($scope.pass) {
 
 
@@ -92,7 +97,7 @@ angular.module('myaccount.module.controller', []).controller('myaccount.controll
 
 
                     $ionicLoading.hide();
-                    $state.go('tab.dash', null, { reload: true });
+                    $state.go('myaccount', null, { reload: true });
                 }, function (error) {
                     alert("An error has occurred: Code = " + error.code);
                     alert("upload error source " + error.source);
@@ -152,11 +157,11 @@ angular.module('myaccount.module.controller', []).controller('myaccount.controll
                 // pagepost++;
                 if (response.data.Success == 'Password has been changed successfully') {
 
-
+ionicToast.show('Password has been changed successfully', 'bottom', false, 2500);
                     $ionicLoading.show({ template: response.data.Success });
                     setTimeout(function () {
                         $ionicLoading.hide()
-                        $state.go('dashboard');
+                        $state.go('myaccount');
                     }, 3000)
                 }
                 else {
@@ -183,5 +188,11 @@ angular.module('myaccount.module.controller', []).controller('myaccount.controll
             });
         }
     }
-   
+   $scope.goBack=function()
+{
+     $rootScope.loginStatus = true;
+     $rootScope.footerIcoSelection = 1;
+     $location.path('/tab/dash/1');
+   // $ionicHistory.goBack();
+}
 });
