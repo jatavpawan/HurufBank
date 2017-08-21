@@ -36,13 +36,37 @@ canvas.clscnvas {
     right: 0;
 }
 .pgcnt {
-    /* float: right; */
-    width: 12px;
+  
     position: absolute;
-    top: -7px;
-    right: 28px;
+    right: 213px;
+    top: -9px;
+    width: 12px;
 }
-
+.pgcnt input {
+    float: right;
+    left: 268px;
+    position: absolute;
+}
+.pdfpgcount.ng-binding {
+    left: 99px;
+    position: absolute;
+    top: -2px;
+    width: 50px;
+}
+.px1 {
+ display:none;
+    left: 241px;
+    position: absolute;
+ top:0;
+}
+.button.py2.m0.button-nav-dark {
+    line-height: 15px;
+    min-height: 20px !important;
+}
 .icoActive {
 color: #387ef5;
+
 }
+pdf-viewer-toolbar{position:absolute; left:25px;}
+.logoutcsl{    font-size: 17px !important;
+    margin: 5px 4px !important;}
