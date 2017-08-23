@@ -2,7 +2,7 @@ angular.module('myaccount.module.controller', []).controller('myaccount.controll
     $rootScope.loginStatus = false;
     $scope.dataSrc = "img/classprofile.png"
     $scope.data = {};
-    $scope.dataSrc = 'http://websvc.smartservicesapp.com/Uploads/profilepic/';
+    $scope.dataSrc = 'http://hurufwebsvc.gmcsco.com/Uploads/profilepic/';
     var userId = localStorage.getItem("UserID");
     httpServices.get('/GetUserInfo?UserID=' + userId).then(function (response) {
         if (response.data.length > 1)
@@ -83,7 +83,7 @@ angular.module('myaccount.module.controller', []).controller('myaccount.controll
             }
             else {
 
-                ft.upload(fileURL, encodeURI("http://websvc.smartservicesapp.com/PicUpload.ashx"), function (r) {
+                ft.upload(fileURL, encodeURI("http://hurufwebsvc.gmcsco.com/PicUpload.ashx"), function (r) {
                     if ($scope.pass) {
 
 
