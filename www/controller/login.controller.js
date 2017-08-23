@@ -24,8 +24,8 @@
                     httpServices.get('/GetUserInfo?UserID=' + response.data.Source).then(function (dat) {
                       //  alert(JSON.stringify(dat));
                        $rootScope.loginStatus=true;
-                        $rootScope.profilePicture ="http://hurufwebsvc.gmcsco.com/Uploads/profilepic/"+ dat.data[0].FilePathName;
-                        $rootScope.profileName = "Hello! " + dat.data[0].FirstName;
+                        $rootScope.profilePicture ="http://localhost:61331/Uploads/profilepic/"+ dat.data.FileName;
+                        $rootScope.profileName = "Hello! " + dat.FirstName;
                       //  alert("Hello! " + dat.data.GetUserInfoResult[0].FirstName)
                         $state.go('tab.dash');
                       // $urlRouterProvider.otherwise('main');

@@ -1,0 +1,96 @@
+﻿<ion-view view-title="Create Blog">
+    <ion-content class="scroll-cust">
+        <!--<div class="row">
+            <div class="col">
+                <a class="button button-outline icon-left ion-plus button-positive" style="border-radius:20px" data-ng-click="addImage()">Image</a>
+            </div>
+
+
+        </div>-->
+       
+        <div class="row">
+            
+            <div class="col col-30">
+                <a data-ng-click="addImage()"><img width="40%" src="img/1469647872_image.ico" /><i style="position:absolute" class="ion-plus"></i></a>
+            </div>
+            <div class="col col-30">
+                <a data-ng-click="addImage()"><img width="40%" src="img/1494585179_Video-Camera-2.ico" /><i style="position:absolute" class="ion-plus"></i></a>
+            </div>
+            <div class="col col-50">
+                <div class="list">
+                    <select class="item item-input item-select" ng-model="data.CategoryID">
+                       <option value="select" ng-selected="CategoryID=='select'">Select Category</option>
+                        <option ng-repeat="value in values" ng-selected="CategoryID==value.CategoryID" value="{{value.CategoryID}}">{{value.CategoryName}}</option>
+                    </select>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col" style="float:left">
+
+
+                <div class="blog-imgs" ng-repeat="image in images track by $index">
+                    <i class="icon ion-close-circled close-icon" ng-click="deleteImg($index,image)"></i>
+                    <img class="avtar-small-pos" ng-src="{{image.imgName}}" width="75" height="75">
+                </div>
+              
+            </div>
+
+
+
+
+        </div>
+         <!--<a class="item-thumbnail-left pos-rev" style="padding:10px" ng-repeat="image in images track by $index">
+             <i class="icon ion-close-circled deleteImg-Icn" ng-click="deleteImg($index,image)"></i>
+      <img ng-src="{{image.imgName}}" style="width:30%;border:solid"/>
+      
+    </a>-->
+       
+        <div style="padding: 10px;position: absolute;
+    width: 100%;
+    bottom: 0px;">
+            <div class="row">
+                <div class="col col-30">
+
+
+                </div>
+                <div class="col-70">
+                    <select class="item item-input item-select" ng-model="data.PrivacyID" style="margin-right: -5px;">
+
+                        <option ng-repeat="value in Privacyvalues" ng-selected="PrivacyID==value.PrivacyID" value="{{value.PrivacyID}}">{{value.PrivacyTypeName}}</option>
+                    </select>
+                </div>
+
+            </div>
+            <label class="item item-input">
+                <textarea placeholder="write blog here" rows="10" data-ng-model="data.textContent"></textarea>
+            </label>
+            </div>
+               
+       
+     
+
+
+        <!--<ion-scroll direction="x">
+            <div class="row">
+
+                <div class="col col-25" ng-repeat="image in images track by $index">
+                    <div class="item item-thumbnail-left" >
+                        <img  src="img/{{image}}" />
+                    </div>
+
+                </div>
+
+            </div>
+        </ion-scroll>-->
+       <!-- <button ng-click="captureVideo()">video upload</button>-->
+
+    </ion-content>
+    <ion-footer-bar>
+        <button ng-show="button" class="button button-block button-positive" style="margin:0" data-ng-click="addBlog1(data)">Update</button>
+        <button ng-hide="button" class="button button-block button-positive" style="margin:0" data-ng-click="addBlog1(data)">Create</button>
+    </ion-footer-bar>
+   
+</ion-view>

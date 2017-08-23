@@ -1,16 +1,13 @@
-angular.module('myaccount.module.controller', []).controller('myaccount.controller', function ($scope,$location,$timeout, $state, $ionicPopover, httpServices, ionicToast, $rootScope, $ionicHistory, $ionicLoading) {
+angular.module('myaccount.module.controller', []).controller('myaccount.controller', function ($scope, $location, $timeout, $state, $ionicPopover, httpServices, ionicToast, $rootScope, $ionicHistory, $ionicLoading,$ionicPopup) {
     $rootScope.loginStatus = false;
+    $scope.FileName = '';
     $scope.dataSrc = "img/classprofile.png"
     $scope.data = {};
-    $scope.dataSrc = 'http://hurufwebsvc.gmcsco.com/Uploads/profilepic/';
+    $scope.dataSrc = 'http://localhost:61331/Uploads/profilepic/';
     var userId = localStorage.getItem("UserID");
     httpServices.get('/GetUserInfo?UserID=' + userId).then(function (response) {
-        if (response.data.length > 1)
-        { $scope.data = response.data[0]; }
-        else {
-            $scope.data = response.data[0];
-        }
-        $scope.dataSrc += $scope.data.FilePathName;
+        $scope.data = response.data;
+        $scope.dataSrc += $scope.data.FileName;
     }, function (error) {
     });
     $scope.setProfilePicture = function () {
@@ -27,14 +24,14 @@ angular.module('myaccount.module.controller', []).controller('myaccount.controll
         });
 
     }
-     $scope.logout = function () {
+    $scope.logout = function () {
         localStorage.removeItem("UserID");
-         $rootScope.loginStatus=false;
-          $timeout(function () {
-          $ionicHistory.clearCache();
-      }, 200);
-         //$location.path('/login');
-           $state.go('login', null, { reload: true });
+        $rootScope.loginStatus = false;
+        $timeout(function () {
+            $ionicHistory.clearCache();
+        }, 200);
+        //$location.path('/login');
+        $state.go('login', null, { reload: true });
     }
     $scope.takeFromCamera = function () {
         $scope.popover.hide();
@@ -48,41 +45,38 @@ angular.module('myaccount.module.controller', []).controller('myaccount.controll
     $scope.registerUser = function (data1) {
         var data = data1;
         data.GCMId = localStorage.getItem('GCMID');
-        document.addEventListener("deviceready", onDeviceReady, false);
+        $ionicLoading.show();
+       
+        console.log('updates come here');
+        console.log($scope.FileName)
+        if ($scope.FileName == '') {
+            httpServices.post('RegisterUser', data).then(function (suc) {
+                ionicToast.show('Updated Successfully', 'bottom', false, 2500);
+               $rootScope.loginStatus = true;
+                    // alert(JSON.stringify(response));
+                    $ionicLoading.hide();
+                    $state.go('myaccount', null, { reload: true });
+            }, function (er) {
+                ionicToast.show('error occured', 'bottom', false, 2500);
+            })
+        }
+        else {
+            document.addEventListener("deviceready", onDeviceReady, false);
+            function onDeviceReady() {
+                var fileURL = $scope.FileName;
+                var options = new FileUploadOptions();
+                options.fileKey = "file";
+                options.fileName = fileURL.split("/").pop();
+                options.mimeType = "text/plain";
 
-        function onDeviceReady() {
+                var params = {};
+                if (!$scope.pass) {
+                    data.RegistrationID = localStorage.getItem('UserID');
+                }
+                params = data;
 
-
-            var fileURL = $scope.FileName;
-            var options = new FileUploadOptions();
-            options.fileKey = "file";
-            options.fileName = fileURL.split("/").pop();
-            options.mimeType = "text/plain";
-
-            var params = {};
-            if (!$scope.pass) {
-                data.RegistrationID = localStorage.getItem('UserID');
-            }
-            params = data;
-
-            options.params = params;
-            var ft = new FileTransfer();
-            $ionicLoading.show();
-            if (fileURL == null || fileURL == "") {
-
-            }
-            console.log('updates come here');
-            console.log($scope.FileName)
-            if ($scope.FileName == '') {
-                httpServices.post('RegisterUser', data).then(function (suc) {
-                    ionicToast.show('Updated Successfully', 'bottom', false, 2500);
-                    $state.go('tab.dash', null, { reload: true });
-                }, function (er) {
-                    ionicToast.show('error occured', 'bottom', false, 2500);
-                })
-            }
-            else {
-
+                options.params = params;
+                var ft = new FileTransfer();
                 ft.upload(fileURL, encodeURI("http://hurufwebsvc.gmcsco.com/PicUpload.ashx"), function (r) {
                     if ($scope.pass) {
 
@@ -105,6 +99,7 @@ angular.module('myaccount.module.controller', []).controller('myaccount.controll
                 }, options);
             }
         }
+
 
 
     }
@@ -151,48 +146,20 @@ angular.module('myaccount.module.controller', []).controller('myaccount.controll
             data.RegistrationID = localStorage.getItem('UserID');
 
 
-            httpServices.post('ChangePassword ', data).then(function (response) {
+            httpServices.post('ChangePassword', data).then(function (response) {
                 console.log(response);
-                //$scope.myPosts = response.data.GetBlogListbyUserIDResult;
-                // pagepost++;
-                if (response.data.Success == 'Password has been changed successfully') {
-
-ionicToast.show('Password has been changed successfully', 'bottom', false, 2500);
-                    $ionicLoading.show({ template: response.data.Success });
-                    setTimeout(function () {
-                        $ionicLoading.hide()
-                        $state.go('myaccount');
-                    }, 3000)
-                }
-                else {
-                    if (response.data.Success != null || response.data.Success != 'null') {
-
-                        $ionicLoading.show({ template: response.data.Success });
-                        setTimeout(function () {
-                            $ionicLoading.hide()
-                        }, 2000)
-                    }
-                    else {
-                        $ionicLoading.show({ template: response.data.Success });
-                        setTimeout(function () {
-                            $ionicLoading.hide()
-                        }, 2000)
-                    }
-                }
-
-
-
-
+                $ionicLoading.hide();
+                data.reenterpassword=data.NewPassword=data.OldPassword="";
+                 ionicToast.show(response.data.Success, 'bottom', false, 2500);
             }, function (error) {
 
             });
         }
     }
-   $scope.goBack=function()
-{
-     $rootScope.loginStatus = true;
-     $rootScope.footerIcoSelection = 1;
-     $location.path('/tab/dash/1');
-   // $ionicHistory.goBack();
-}
+    $scope.goBack = function () {
+        $rootScope.loginStatus = true;
+        $rootScope.footerIcoSelection = 1;
+        $location.path('/tab/dash/1');
+        // $ionicHistory.goBack();
+    }
 });
