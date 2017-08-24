@@ -6,7 +6,7 @@
 
     $scope.pdfUrl = $scope.relativity;
  $scope.AddFile=function(){ 
-      $rootScope.TabText="PDF";
+      $rootScope.TabID="1";
      $state.go("addfile");
     };
 })

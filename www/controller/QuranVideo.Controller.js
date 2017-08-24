@@ -19,7 +19,7 @@
 
     };
      $scope.AddFile=function(){ 
-      $rootScope.TabText="Video";
+      $rootScope.TabID="2";
      $state.go("addfile");
     };
 })

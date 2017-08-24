@@ -101,7 +101,7 @@
     }
   };
   $scope.AddFile=function(){ 
-      $rootScope.TabText="Audio";
+      $rootScope.TabID="3";
      $state.go("addfile");
     };
 });
