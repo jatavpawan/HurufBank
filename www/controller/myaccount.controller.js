@@ -3,7 +3,7 @@ angular.module('myaccount.module.controller', []).controller('myaccount.controll
     $scope.FileName = '';
     $scope.dataSrc = "img/classprofile.png"
     $scope.data = {};
-    $scope.dataSrc = 'http://localhost:61331/Uploads/profilepic/';
+    $scope.dataSrc = 'http://hurufwebsvc.gmcsco.com/Uploads/profilepic/';
     var userId = localStorage.getItem("UserID");
     httpServices.get('/GetUserInfo?UserID=' + userId).then(function (response) {
         $scope.data = response.data;
