@@ -24,6 +24,7 @@
                     httpServices.get('/GetUserInfo?UserID=' + response.data.Source).then(function (dat) {
                       //  alert(JSON.stringify(dat));
                        $rootScope.loginStatus=true;
+                       $rootScope.footerIcoSelection=1;
                         $rootScope.profilePicture ="http://localhost:61331/Uploads/profilepic/"+ dat.data.FileName;
                         $rootScope.profileName = "Hello! " + dat.FirstName;
                       //  alert("Hello! " + dat.data.GetUserInfoResult[0].FirstName)

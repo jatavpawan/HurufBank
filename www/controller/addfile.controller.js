@@ -1,4 +1,4 @@
-angular.module('addfile.module.controller', []).controller('addfile.controller', function ($scope, $state, httpServices, ionicToast, $rootScope, $ionicHistory, $location,$ionicLoading) {
+angular.module('addfile.module.controller', []).controller('addfile.controller', function ($scope, $state, httpServices, ionicToast, $rootScope, $ionicHistory, $location, $ionicLoading) {
     $rootScope.loginStatus = false;
     $scope.link = false;
     $scope.goBack = function () {
@@ -12,12 +12,19 @@ angular.module('addfile.module.controller', []).controller('addfile.controller',
         $scope.link = !$scope.link
 
     }
+    $scope.uploadFile=function()
+    {
+        var fc=new FileChooser();
+        fc.open(function (uri) {
+            alert(uri);
+        });
+    }
     $scope.SaveFile = function (data) {
         $ionicLoading.show();
         data.FileType = $rootScope.TabID;
         data.FileCategory = $rootScope.footerIcoSelection;
         data.CreatedBy = localStorage.getItem("UserID");
-        
+
         if ($scope.link) {
             httpServices.post('SaveUserFile', data).then(function (response) {
                 ionicToast.show(response.data.Success, 'bottom', false, 2500);
@@ -25,9 +32,9 @@ angular.module('addfile.module.controller', []).controller('addfile.controller',
 
                 $ionicLoading.hide();
                 //$state.go('myaccount', null, { reload: true });
-                 $ionicHistory.goBack();
+                $ionicHistory.goBack();
             }, function (er) {
-                  $ionicLoading.hide();
+                $ionicLoading.hide();
                 ionicToast.show('error occured', 'bottom', false, 2500);
             })
         }
