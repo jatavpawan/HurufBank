@@ -36,8 +36,9 @@
             })
         }
         else {
+             document.addEventListener("deviceready", onDeviceReady, false);
             function onDeviceReady() {
-                document.addEventListener("deviceready", onDeviceReady, false);
+               
                 var fileURL = $scope.FileName;
                 var options = new FileUploadOptions();
                 options.fileKey = "file";

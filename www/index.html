@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
@@ -41,68 +42,43 @@
     <script src="controller/QuranAudio.Controller.js"></script>
     <script src="controller/QuranDashboard.controller.js"></script>
     <script src="controller/QuranVideo.Controller.js"></script>
-   
+
     <script src="controller/services/httpservice.js"></script>
     <script src="controller/login.controller.js"></script>
     <script src="controller/main.controller.js"></script>
     <script src="controller/registration.controller.js"></script>
     <script src="controller/account.controller.js"></script>
     <script src="controller/myaccount.controller.js"></script>
-     <script src="controller/addfile.controller.js"></script>
+    <script src="controller/addfile.controller.js"></script>
+    <script src="controller/viewfile.controller.js"></script>
+     <script src="controller/forgotpassword.controller.js"></script>
 </head>
-<body ng-app="starter" ng-controller="main">
-    <!--
-      The nav bar that will be updated as we navigate between views.
-    -->
-    <!--<ion-nav-bar class="bar-stable">
-        <ion-nav-back-button>
-        </ion-nav-back-button>
-    </ion-nav-bar>-->
-    <!-- <ion-side-menus enable-menu-with-back-views="true">
-        <ion-side-menu-content>
-            <ion-nav-bar class="bar-positive">
-                <ion-nav-buttons side="left">
-                    <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
-                </ion-nav-buttons>
-                <ion-nav-buttons side="right">
-                    <button class="button button-icon button-clear ion-social-rss" ui-sref="addblog"><i class="ion-plus"></i></button>
-                </ion-nav-buttons>
-                <ion-nav-back-button>
-                </ion-nav-back-button>
-            </ion-nav-bar>
 
-            <ion-nav-view></ion-nav-view>
-        </ion-side-menu-content>
-        </ion-side-menus> -->
-     <ion-nav-bar class="bar-stable"> 
+<body ng-app="starter" ng-controller="main">
+
+    <ion-nav-bar class="bar-stable">
     </ion-nav-bar>
-    
-        <ion-nav-view>
-             
-        </ion-nav-view>
-        <ion-footer-bar align-title="center" class="bar-custom {{loginStatus? '':'ng-hide'}}">
+    <ion-nav-view></ion-nav-view>
+    <ion-footer-bar align-title="center" class="bar-custom {{loginStatus? '':'ng-hide'}}">
         <div class="tabs tabs-icon-top">
             <a class="tab-item {{footerIcoSelection==1? 'icoActive':''}}" ng-click="SelectTab(1);">
-                <i class="icon ion-home"></i>
-                Quran
+                <i class="icon ion-home"></i> Quran
             </a>
             <a class="tab-item {{footerIcoSelection==2? 'icoActive':''}}" ng-click="SelectTab(2);">
-                <i class="icon ion-star"></i>
-                Para
+                <i class="icon ion-star"></i> Para
             </a>
             <a class="tab-item  {{footerIcoSelection==3? 'icoActive':''}}" ng-click="SelectTab(3);">
-                <i class="icon ion-gear-a"></i>
-                Surah
+                <i class="icon ion-gear-a"></i> Surah
             </a>
-             <!--<a class="tab-item  {{footerIcoSelection==4? 'icoActive':''}}" ng-click="SelectTab(4);">
+            <!--<a class="tab-item  {{footerIcoSelection==4? 'icoActive':''}}" ng-click="SelectTab(4);">
                 <i class="icon ion-gear-a"></i>
                 Community
             </a>-->
-             <a  ui-sref="myaccount" class="tab-item  {{footerIcoSelection==5? 'icoActive':''}}" ng-click="SelectTab(5);">
-                <i class="icon ion-gear-a"></i>
-                My Account
+            <a ui-sref="myaccount" class="tab-item  {{footerIcoSelection==5? 'icoActive':''}}" ng-click="SelectTab(5);">
+                <i class="icon ion-gear-a"></i> My Account
             </a>
         </div>
     </ion-footer-bar>
 </body>
+
 </html>

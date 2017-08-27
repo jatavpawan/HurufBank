@@ -1,29 +1,12 @@
-﻿angular.module('Quran.Audio.module', []).controller('Quran.Audio.Controller', function ($scope,$rootScope,$state, $ionicPlatform, $cordovaFileTransfer) {
-  
-  var audio = [{
-    id: 1,
-    key: 'master',
-    title: "The Master",
-    track: 'https://royalwap.net/128-4878/Mera%20Dil%20Bhi%20Kitna%20Pagal%20Hai.mp3',
-    genre: "This will be card Description",
-    download:true
-  }, {
-    id: 2,
-    key: 'give',
-    title: "Give",
-    track: 'https://royalwap.net/128-789319s/Main%20Tera%20Boyfriend.mp3',
-    genre: "Alternative & Punk | Bright",
-    download:true
-  }, {
-    id: 3,
-    key: 'morning',
-    title: "Morning Stroll",
-    track: 'https://royalwap.net/128-389689/Lag%20Ja%20Gale%20Ke%20Phir.mp3',
-    genre: "Classical | Happy",
-    download:false
-  },];
+﻿angular.module('Quran.Audio.module', []).controller('Quran.Audio.Controller', function ($scope, $rootScope, $state, $ionicPlatform, $cordovaFileTransfer,httpServices) {
 
-  $scope.audioTracks = Array.prototype.slice.call(audio, 0);
+  $scope.Files = {};
+  var queryStr = 'FileType=3&FileCategory=' + $rootScope.footerIcoSelection;
+  httpServices.get('/GetFiles?' + queryStr).then(function (response) {
+    $scope.Files = response.data;
+
+  }, function (error) {
+  });
 
   $scope.player = {
     key: '' // Holds a last active track
@@ -34,17 +17,17 @@
       var url = track;
       var filename = url.split("/").pop();
       alert(filename);
-      var targetPath = cordova.file.externalRootDirectory+"Huruf/Audio/" + filename;
+      var targetPath = cordova.file.externalRootDirectory + "Huruf/Audio/" + filename;
       var trustHosts = true
       var options = {};
       alert(cordova.file.externalRootDirectory);
       $cordovaFileTransfer.download(url, targetPath, options, trustHosts)
         .then(function (result) {
           // Success!
-          alert("Success"+JSON.stringify(result));
+          alert("Success" + JSON.stringify(result));
         }, function (error) {
           // Error
-          alert("Error"+JSON.stringify(error));
+          alert("Error" + JSON.stringify(error));
         }, function (progress) {
           $timeout(function () {
             $scope.downloadProgress = (progress.loaded / progress.total) * 100;
@@ -55,9 +38,9 @@
 
   $scope.playTrack = function (track, key) {
     var filename = track.split("/").pop();
-    
-      var targetPath = cordova.file.externalRootDirectory+"Huruf/Audio/" + filename;
-        alert(targetPath);
+
+    var targetPath = cordova.file.externalRootDirectory + "Huruf/Audio/" + filename;
+    alert(targetPath);
     // Preload an audio track before we play it
     // window.plugins.NativeAudio.preloadComplex(key, targetPath, 1, 1, 0, function(msg) {
     //   // If this is not a first playback stop and unload previous audio track
@@ -71,7 +54,7 @@
     // }, function(msg) {
     //   console.log('error: ' + msg); // Loading error
     // });
-   // var audioUrl = track;
+    // var audioUrl = track;
 
     // // Play an audio file (not recommended, since the screen will be plain black)
     // window.plugins.streamingMedia.playAudio(track);
@@ -100,8 +83,8 @@
       $scope.player.key = ''; // Remove a current track on unload, it will break an app if we try to unload it again in playTrack function
     }
   };
-  $scope.AddFile=function(){ 
-      $rootScope.TabID="3";
-     $state.go("addfile");
-    };
+  $scope.AddFile = function () {
+    $rootScope.TabID = "3";
+    $state.go("addfile");
+  };
 });

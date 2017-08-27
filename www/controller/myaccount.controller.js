@@ -1,13 +1,18 @@
-angular.module('myaccount.module.controller', []).controller('myaccount.controller', function ($scope, $location, $timeout, $state, $ionicPopover, httpServices, ionicToast, $rootScope, $ionicHistory, $ionicLoading,$ionicPopup) {
+angular.module('myaccount.module.controller', []).controller('myaccount.controller', function ($scope, $location, $timeout, $state, $ionicPopover, httpServices, ionicToast, $rootScope, $ionicHistory, $ionicLoading, $ionicPopup) {
     $rootScope.loginStatus = false;
     $scope.FileName = '';
-    $scope.dataSrc = "img/classprofile.png"
+    var classpic = "img/classprofile.png"
     $scope.data = {};
     $scope.dataSrc = 'http://hurufwebsvc.gmcsco.com/Uploads/profilepic/';
     var userId = localStorage.getItem("UserID");
     httpServices.get('/GetUserInfo?UserID=' + userId).then(function (response) {
         $scope.data = response.data;
-        $scope.dataSrc += $scope.data.FileName;
+        if ($scope.data.FileName != null) {
+            $scope.dataSrc += $scope.data.FileName;
+        }
+        else {
+            $scope.dataSrc = classpic;
+        }
     }, function (error) {
     });
     $scope.setProfilePicture = function () {
@@ -44,18 +49,19 @@ angular.module('myaccount.module.controller', []).controller('myaccount.controll
     }
     $scope.registerUser = function (data1) {
         var data = data1;
+        data.RegistrationID = localStorage.getItem('UserID');
         data.GCMId = localStorage.getItem('GCMID');
         $ionicLoading.show();
-       
+
         console.log('updates come here');
         console.log($scope.FileName)
         if ($scope.FileName == '') {
             httpServices.post('RegisterUser', data).then(function (suc) {
                 ionicToast.show('Updated Successfully', 'bottom', false, 2500);
-               $rootScope.loginStatus = true;
-                    // alert(JSON.stringify(response));
-                    $ionicLoading.hide();
-                    $state.go('myaccount', null, { reload: true });
+                $rootScope.loginStatus = true;
+                // alert(JSON.stringify(response));
+                $ionicLoading.hide();
+                $state.go('myaccount', null, { reload: true });
             }, function (er) {
                 ionicToast.show('error occured', 'bottom', false, 2500);
             })
@@ -70,26 +76,16 @@ angular.module('myaccount.module.controller', []).controller('myaccount.controll
                 options.mimeType = "text/plain";
 
                 var params = {};
-                if (!$scope.pass) {
-                    data.RegistrationID = localStorage.getItem('UserID');
-                }
                 params = data;
 
                 options.params = params;
                 var ft = new FileTransfer();
                 ft.upload(fileURL, encodeURI("http://hurufwebsvc.gmcsco.com/PicUpload.ashx"), function (r) {
-                    if ($scope.pass) {
 
-
-                        ionicToast.show('Registered Successfully', 'bottom', false, 2500);
-                    } else {
-                        ionicToast.show('Updated Details Successfully', 'bottom', false, 2500);
-                    }
+                    ionicToast.show('Updated Details Successfully', 'bottom', false, 2500);
                     $rootScope.profilePicture = "data:image/jpeg;base64," + r.response;
                     $rootScope.loginStatus = true;
                     // alert(JSON.stringify(response));
-
-
                     $ionicLoading.hide();
                     $state.go('myaccount', null, { reload: true });
                 }, function (error) {
@@ -149,8 +145,8 @@ angular.module('myaccount.module.controller', []).controller('myaccount.controll
             httpServices.post('ChangePassword', data).then(function (response) {
                 console.log(response);
                 $ionicLoading.hide();
-                data.reenterpassword=data.NewPassword=data.OldPassword="";
-                 ionicToast.show(response.data.Success, 'bottom', false, 2500);
+                data.reenterpassword = data.NewPassword = data.OldPassword = "";
+                ionicToast.show(response.data.Success, 'bottom', false, 2500);
             }, function (error) {
 
             });

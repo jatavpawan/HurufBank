@@ -15,9 +15,11 @@ angular.module('starter', ['ionic', 'ui.router', 'ionic-toast', 'starter.service
     'account.module.controller',
     'main.module.controller',
     'http.service.module',
-    'addfile.module.controller'
+    'addfile.module.controller',
+    'viewfile.module.controller',
+    'forgotpassword.module.controller'
 ])
-    .run(function ($rootScope, $ionicPlatform, $state, $ionicHistory,$location) {
+    .run(function ($rootScope, $ionicPlatform, $state, $ionicHistory, $location) {
         $ionicPlatform.ready(function () {
 
             $ionicPlatform.registerBackButtonAction(function (e) {
@@ -29,12 +31,11 @@ angular.module('starter', ['ionic', 'ui.router', 'ionic-toast', 'starter.service
                 else if ($state.current.name == 'myaccount') {
                     $rootScope.loginStatus = true;
                     $rootScope.footerIcoSelection = 1;
-                     $state.go('tab.dash');
-                   // $location.path('/tab/dash/1');
+                    $state.go('tab.dash', { tabid: 1 }, { reload: true });
                 }
                 else if ($state.current.name == 'addfile') {
-                    $rootScope.loginStatus = true;    
-                     $ionicHistory.goBack();
+                    $rootScope.loginStatus = true;
+                    $ionicHistory.goBack();
                 }
                 else if ($ionicHistory.backView()) {
                     $ionicHistory.goBack();
@@ -74,6 +75,7 @@ angular.module('starter', ['ionic', 'ui.router', 'ionic-toast', 'starter.service
             // Each tab has its own nav history stack:
 
             .state('tab.dash', {
+                cache: false,
                 url: '/dash/:tabid',
                 views: {
                     'tab-dash': {
@@ -83,6 +85,7 @@ angular.module('starter', ['ionic', 'ui.router', 'ionic-toast', 'starter.service
                 }
             })
             .state('tab.chats', {
+                cache: false,
                 url: '/chats/:tabid',
                 views: {
                     'tab-chats': {
@@ -92,6 +95,7 @@ angular.module('starter', ['ionic', 'ui.router', 'ionic-toast', 'starter.service
                 }
             })
             .state('tab.account', {
+                cache: false,
                 url: '/account/:tabid',
                 views: {
                     'tab-account': {
@@ -109,6 +113,12 @@ angular.module('starter', ['ionic', 'ui.router', 'ionic-toast', 'starter.service
                 url: '/registration',
                 templateUrl: 'templates/registration.html',
                 controller: 'registration.controller',
+            }).state('forgotpassword', {
+                cache: false,
+                url: '/forgotpassword',
+                templateUrl: 'templates/forgotpassword.html',
+                controller: 'forgotpassword.controller',
+                params: {fileURL:''}
             }).state('myaccount', {
                 cache: false,
                 url: '/myaccount',
@@ -119,6 +129,12 @@ angular.module('starter', ['ionic', 'ui.router', 'ionic-toast', 'starter.service
                 url: '/addfile',
                 templateUrl: 'templates/addfile.html',
                 controller: 'addfile.controller',
+            }).state('viewfile', {
+                cache: false,
+                url: '/viewfile',
+                templateUrl: 'templates/viewfile.html',
+                controller: 'viewfile.controller',
+                params: {fileURL:''}
             });
 
 

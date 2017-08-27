@@ -17,17 +17,21 @@
             </div>
             <div class="row">
 
-                <button class="button icon-left button-block ion-upload" ng-hide="link" ng-click="uploadFile()">Upload File</button>&nbsp;
-                <button class="button icon-left button-block ion-link" ng-click="showHideLink()">Enter Link</button>
+                <button ng-class="clsactive1" class="button button-positive icon-left button-block ion-upload" ng-click="uploadFile()">Upload File</button>&nbsp;
+                <button ng-class="clsactive2" class="button button-positive icon-left button-block ion-upload" ng-click="showHideLink()">Enter Link</button>
             </div>
-
+            <div class="row" ng-show="upload">
+                <button ng-class="uploadactive" class="button icon-left button-block {{TabID==1?'ion-ios-paper-outline' :TabID==2?'ion-ios-videocam':'ion-radio-waves' }}" ng-click="selectFile()">{{uploadText}}</button>&nbsp;
+            </div>
             <label class="item item-input" ng-show="link">
-             <input type="text" placeholder="Paste File URL" ng-model="data.FileURL">
+                 <i class="icon placeholder-icon {{TabID==1?'ion-ios-paper-outline' :TabID==2?'ion-ios-videocam':'ion-radio-waves' }}"></i>
+             <input type="text" placeholder="Paste a {{TabID==1?'PDF' :TabID==2?'Video':'Audio' }} File URL" ng-model="data.FileURL">
            </label>
 
             <div class="row">
 
                 <button class="button button-block button-positive" ng-click="SaveFile(data)">Save</button>
+            
             </div>
         </div>
     </ion-content>

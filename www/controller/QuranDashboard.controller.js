@@ -1,12 +1,19 @@
-﻿angular.module('Quran.pdf.Module', [])
+﻿angular.module('Quran.pdf.Module', []).controller('Quran.pdf.Controller', function ($scope, $rootScope, pdfDelegate, $state,httpServices,) {
+  $scope.showDelegate=false;
+    $scope.Files = {};
+    var queryStr = 'FileType=1&FileCategory=' + $rootScope.footerIcoSelection;
+    httpServices.get('/GetFiles?' + queryStr).then(function (response) {
+        $scope.Files = response.data;
+        
+    }, function (error) {
+    });
 
-.controller('Quran.pdf.Controller', function ($scope,$rootScope, pdfDelegate,$state) {
-    $scope.relativity = 'http://gmcsco.com/para.pdf';
-    $scope.material = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/149125/material-design-2.pdf';
+$scope.OpenPDF=function(fileURL){
+  $state.go('viewfile',{fileURL:fileURL});
+};
 
-    $scope.pdfUrl = $scope.relativity;
- $scope.AddFile=function(){ 
-      $rootScope.TabID="1";
-     $state.go("addfile");
+    $scope.AddFile = function () {
+        $rootScope.TabID = "1";
+        $state.go("addfile");
     };
 })

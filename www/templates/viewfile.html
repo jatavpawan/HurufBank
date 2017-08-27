@@ -1,0 +1,8 @@
+<ion-view view-title="{{footerIcoSelection==1? 'Quran' :footerIcoSelection==2? 'Para':footerIcoSelection==3? 'Surah':''}}">
+    <ion-nav-buttons side="left">
+        <a class="button icon-left ion-chevron-left button-clear button-dark" ng-click="goBack()">Back</a>
+    </ion-nav-buttons>
+    <ion-content class="padding">
+        <pdf-viewer delegate-handle="my-pdf-container" url="pdfUrl" scale="1" show-toolbar="true"></pdf-viewer>
+    </ion-content>
+</ion-view>
