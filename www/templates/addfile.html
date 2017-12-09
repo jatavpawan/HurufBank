@@ -21,7 +21,7 @@
                 <button ng-class="clsactive2" class="button button-positive icon-left button-block ion-upload" ng-click="showHideLink()">Enter Link</button>
             </div>
             <div class="row" ng-show="upload">
-                <button ng-class="uploadactive" class="button icon-left button-block {{TabID==1?'ion-ios-paper-outline' :TabID==2?'ion-ios-videocam':'ion-radio-waves' }}" ng-click="selectFile()">{{uploadText}}</button>&nbsp;
+                <button ng-disabled="disableVideoUploadOption" ng-class="uploadactive" class="button icon-left button-block {{TabID==1?'ion-ios-paper-outline' :TabID==2?'ion-ios-videocam':'ion-radio-waves' }}" ng-click="selectFile()">{{uploadText}}</button>&nbsp;
             </div>
             <label class="item item-input" ng-show="link">
                  <i class="icon placeholder-icon {{TabID==1?'ion-ios-paper-outline' :TabID==2?'ion-ios-videocam':'ion-radio-waves' }}"></i>

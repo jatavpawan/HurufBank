@@ -4,17 +4,21 @@
     $rootScope.footerIcoSelection = 1;
     $scope.SelectTab = function (tabId) {
         $rootScope.footerIcoSelection = tabId;
-        console.log($stateParams)
-        if ($stateParams.tabid == 1) {
-            $state.go('tab.dash', { tabid: $stateParams.tabid }, { reload: true });
+        if (tabId == 4) {
+            $state.go('community');
         }
-        else if ($stateParams.tabid == 2) {
-            $state.go('tab.chats', { tabid: $stateParams.tabid }, { reload: true });
+        else {
+            console.log($stateParams)
+            if ($stateParams.tabid == 1) {
+                $state.go('tab.dash', { tabid: $stateParams.tabid }, { reload: true });
+            }
+            else if ($stateParams.tabid == 2) {
+                $state.go('tab.chats', { tabid: $stateParams.tabid }, { reload: true });
+            }
+            else if ($stateParams.tabid == 3) {
+                $state.go('tab.account', { tabid: $stateParams.tabid }, { reload: true });
+            }
         }
-        else if ($stateParams.tabid == 3) {
-            $state.go('tab.account', { tabid: $stateParams.tabid }, { reload: true });
-        }
-
     }
 
     var UIDs = localStorage.getItem("UserID");

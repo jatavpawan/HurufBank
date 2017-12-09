@@ -70,3 +70,13 @@ color: #387ef5;
 pdf-viewer-toolbar{position:absolute; left:25px;}
 .logoutcsl{    font-size: 17px !important;
     margin: 5px 4px !important;}
+
+
+    #ngProgress-container
+    {
+        position: relative !important;
+    }
+
+    body {
+  cursor: url('https://ionicframework.com/img/finger.png'), auto;
+}

@@ -1,4 +1,8 @@
 ﻿angular.module('Quran.pdf.Module', []).controller('Quran.pdf.Controller', function ($scope, $rootScope, pdfDelegate, $state,httpServices,) {
+ $scope.isShowAddIcon = false;
+  if (localStorage.getItem("UserID") == 1) {
+    $scope.isShowAddIcon = true;
+  }
   $scope.showDelegate=false;
     $scope.Files = {};
     var queryStr = 'FileType=1&FileCategory=' + $rootScope.footerIcoSelection;
@@ -14,6 +18,7 @@ $scope.OpenPDF=function(fileURL){
 
     $scope.AddFile = function () {
         $rootScope.TabID = "1";
+         $rootScope.disableVideoUploadOption =false;
         $state.go("addfile");
     };
 })

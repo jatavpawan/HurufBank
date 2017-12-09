@@ -1,6 +1,6 @@
 <ion-view view-title="{{footerIcoSelection==1? 'Quran':footerIcoSelection==2? 'Para':footerIcoSelection==3? 'Surah':''}} Document">
 <ion-nav-buttons side="right">
-      <a class="tab-item" ng-click="AddFile()">
+      <a class="tab-item" ng-show="isShowAddIcon" ng-click="AddFile()">
          <i class="icon ion-plus-circled"></i>
       </a>      
     </ion-nav-buttons>

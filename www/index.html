@@ -21,6 +21,7 @@
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/customstyle.css" rel="stylesheet" />
+     <link href="css/ngProgress.css" rel="stylesheet">
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
@@ -31,6 +32,7 @@
     <script src="lib/ionic-toast/dist/ionic-toast.bundle.min.js"></script>
     <!-- cordova script (this will be a 404 during development) -->
     <script src="js\ng-cordova.js"></script>
+    <script src="js\ngprogress.min.js"></script>
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
@@ -52,6 +54,9 @@
     <script src="controller/addfile.controller.js"></script>
     <script src="controller/viewfile.controller.js"></script>
      <script src="controller/forgotpassword.controller.js"></script>
+     <script src="controller/community.controller.js"></script>
+     <script src="controller/addpost.controller.js"></script>
+     <script src="controller/viewpost.controller.js"></script>
 </head>
 
 <body ng-app="starter" ng-controller="main">
@@ -70,10 +75,10 @@
             <a class="tab-item  {{footerIcoSelection==3? 'icoActive':''}}" ng-click="SelectTab(3);">
                 <i class="icon ion-gear-a"></i> Surah
             </a>
-            <!--<a class="tab-item  {{footerIcoSelection==4? 'icoActive':''}}" ng-click="SelectTab(4);">
-                <i class="icon ion-gear-a"></i>
+            <a ui-sref="community" class="tab-item  {{footerIcoSelection==4? 'icoActive':''}}" ng-click="SelectTab(4);">
+                <i class="icon ion-person-stalker"></i>
                 Community
-            </a>-->
+            </a>
             <a ui-sref="myaccount" class="tab-item  {{footerIcoSelection==5? 'icoActive':''}}" ng-click="SelectTab(5);">
                 <i class="icon ion-gear-a"></i> My Account
             </a>

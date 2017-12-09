@@ -1,0 +1,19 @@
+<ion-view view-title="Post a discussion">
+    <ion-nav-buttons side="left">
+        <a class="button icon-left ion-chevron-left button-clear button-dark" ng-click="goBack()">Back</a>
+    </ion-nav-buttons>
+
+    <ion-content class="ion-contentColor">
+        <div class="list list-inset">
+            <label class="item item-input">
+               <input type="text" placeholder="Title" ng-model="data.Title">
+           </label>
+            <label class="item item-input">
+               <textarea placeholder="Description here...." rows="20" ng-model="data.Description"></textarea>
+           </label>
+            <div class="row">
+                <button class="button button-block button-positive" ng-click="Post(data)">Post</button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

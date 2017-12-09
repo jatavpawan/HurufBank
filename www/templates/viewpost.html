@@ -1,0 +1,44 @@
+<ion-view view-title="Discussion">
+  <ion-nav-buttons side="left">
+    <a class="button icon-left ion-chevron-left button-clear button-dark" ng-click="goBack()">Back</a>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <a class="tab-item" ng-click="Reply()">
+      <i class="icon ion-reply-all logoutcsl">&nbsp;Reply</i>
+    </a>
+  </ion-nav-buttons>
+  <ion-content class="ion-contentColor">
+    <div class="list card">
+      <div class="item item-avatar">
+        <img src="http://hurufwebsvc.gmcsco.com/Uploads/profilepic/{{post.FileName}}">
+        <h2>{{post.FullName}}</h2>
+        <p>{{formatDate(post.PostedDate)}}</p>
+      </div>
+
+      <div class="item item-body">
+        <p style="margin: 0px;font-size: 21px;font-weight: 600;line-height: 26px;">{{post.Title}}</p>
+        <p>
+          {{post.Description}}
+        </p>
+      </div>
+    </div>
+    <div class="list card" ng-repeat="comment in comments">
+      <div class="item item-avatar">
+        <img src="http://hurufwebsvc.gmcsco.com/Uploads/profilepic/{{comment.FileName}}">
+        <h2>{{comment.FullName}}</h2>
+        <p>{{formatDate(comment.PostedDate)}}</p>
+      </div>
+      <div class="item item-body">
+        <p>
+          {{comment.Description}}
+        </p>
+      </div>
+    </div>
+    <div ng-if="comments.length===0" class="list card">
+      <div class="item item-body">
+        <p style="margin: 0px;font-size: 21px;font-weight: 600;line-height: 26px;">No comments yet on this post</p>
+      </div>
+    </div>
+  </ion-content>
+
+</ion-view>

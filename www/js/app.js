@@ -8,16 +8,20 @@
 angular.module('starter', ['ionic', 'ui.router', 'ionic-toast', 'starter.services', 'pdf', 'Quran.pdf.Module',
     'Quran.Video.module',
     'Quran.Audio.module',
-    'ngCordova',
+    'ngCordova','ngProgress',
     'login.module.controller',
     'registration.module.controller',
     'myaccount.module.controller',
+    'community.module.controller',
     'account.module.controller',
     'main.module.controller',
     'http.service.module',
     'addfile.module.controller',
     'viewfile.module.controller',
-    'forgotpassword.module.controller'
+    'forgotpassword.module.controller',
+    
+    'addpost.module.controller',
+    'viewpost.module.controller'
 ])
     .run(function ($rootScope, $ionicPlatform, $state, $ionicHistory, $location) {
         $ionicPlatform.ready(function () {
@@ -33,7 +37,7 @@ angular.module('starter', ['ionic', 'ui.router', 'ionic-toast', 'starter.service
                     $rootScope.footerIcoSelection = 1;
                     $state.go('tab.dash', { tabid: 1 }, { reload: true });
                 }
-                else if ($state.current.name == 'addfile') {
+                else if ($state.current.name == 'addfile' || $state.current.name == 'viewfile') {
                     $rootScope.loginStatus = true;
                     $ionicHistory.goBack();
                 }
@@ -124,6 +128,12 @@ angular.module('starter', ['ionic', 'ui.router', 'ionic-toast', 'starter.service
                 url: '/myaccount',
                 templateUrl: 'templates/myaccount.html',
                 controller: 'myaccount.controller',
+            }).state('community', {
+                cache: false,
+                url: '/community',
+                templateUrl: 'templates/community.html',
+                controller: 'community.controller'
+             
             }).state('addfile', {
                 cache: false,
                 url: '/addfile',
@@ -135,6 +145,18 @@ angular.module('starter', ['ionic', 'ui.router', 'ionic-toast', 'starter.service
                 templateUrl: 'templates/viewfile.html',
                 controller: 'viewfile.controller',
                 params: {fileURL:''}
+            }).state('addpost', {
+                cache: false,
+                url: '/addpost',
+                templateUrl: 'templates/addpost.html',
+                controller: 'addpost.controller'
+            
+            }).state('viewpost', {
+                cache: false,
+                url: '/viewpost',
+                templateUrl: 'templates/viewpost.html',
+                controller: 'viewpost.controller',
+                 params: {postData:{}}
             });
 
 
