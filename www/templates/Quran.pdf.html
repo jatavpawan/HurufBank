@@ -1,10 +1,22 @@
 <ion-view view-title="{{footerIcoSelection==1? 'Quran':footerIcoSelection==2? 'Para':footerIcoSelection==3? 'Surah':''}} Document">
+<ion-nav-buttons side="right">
+      <a class="tab-item" ng-show="isShowAddIcon" ng-click="AddFile()">
+         <i class="icon ion-plus-circled"></i>
+      </a>      
+    </ion-nav-buttons>
   <ion-content class="padding">
-      <pdf-viewer delegate-handle="my-pdf-container"
+      <pdf-viewer ng-show="showDelegate" delegate-handle="my-pdf-container"
                   url="pdfUrl"
                   scale="1"
                   show-toolbar="true" ></pdf-viewer>
-   
+   <div ng-hide="showDelegate" class="list card" ng-repeat="file in Files">
+
+    <a class="item item-avatar" ng-click="OpenPDF(file.FileURL)">
+      <img src="img/pdfico.png">
+      <h2>{{file.Title}}</h2>
+      <p>{{file.Description}}</p>
+    </a>
+</div>
   </ion-content>
     
 </ion-view>

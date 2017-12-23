@@ -1,55 +1,32 @@
 <ion-view view-title="{{footerIcoSelection==1? 'Quran':footerIcoSelection==2? 'Para':footerIcoSelection==3? 'Surah':''}} Audio ">
+  <ion-nav-buttons side="right">
+    <a class="tab-item" ng-show="isShowAddIcon" ng-click="AddFile()">
+      <i class="icon ion-plus-circled"></i>
+    </a>
+  </ion-nav-buttons>
   <ion-content>
+    <div class="list card" ng-repeat="audio in Files">
+      <div class="item item-avatar">
+        <img ng-src="{{audio.pause?'img\\Gifs\\giphy.gif':'img\\Gifs\\music1.png'}}">
+        <h2>{{audio.Title}}</h2>
+        <p>{{audio.Description}}</p>
+      </div>
 
+      <div  class="item tabs tabs-secondary tabs-icon-left">
+        <a ng-disabled="!audio.IsDownloaded" class="tab-item" ng-click="playTrack(audio)">
+          <i class="icon {{audio.pause?'ion-pause':'ion-ios-play'}}"></i> {{audio.pause?'Pause':'Play'}}
+        </a>
 
- <div class="list card" ng-repeat="audio in audioTracks">
- 
-          <div class="item item-avatar">
-            <img src="http://findicons.com/files/icons/2711/free_icons_for_windows8_metro/512/audio_wave.png">
-            <h2>{{audio.title}}</h2>
-            <p>{{audio.genre}}</p>
-          </div>
- 
-          <div class="item tabs tabs-secondary tabs-icon-left">
-            <a ng-show="audio.download" class="tab-item" ng-click="playTrack(audio.track, audio.key)">
-              <i class="icon ion-ios-play"></i>
-              Play
-            </a>
-            <a ng-show="audio.download"  class="tab-item" ng-click="stopTrack()">
-              <i class="icon ion-android-checkbox-blank"></i>
-              Stop
-            </a>
-             <a ng-hide="audio.download" class="tab-item" ng-click="downloadSong(audio.track)">
-              <i class="icon ion-ios-download"></i>
-              Download
-            </a>-
-          </div>
- 
-        </div>
-      <!--<audio controls="" preload="none">
-          <source src="https://royalwap.net/128-4878/Mera%20Dil%20Bhi%20Kitna%20Pagal%20Hai.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-      </audio>
-      <audio controls="" preload="none">
-          <source src="https://royalwap.net/128-789319s/Main%20Tera%20Boyfriend.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-      </audio>
-      <audio controls="" preload="none">
-          <source src="https://royalwap.net/128-389689/Lag%20Ja%20Gale%20Ke%20Phir.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-      </audio>-->
+        <a  ng-disabled="!audio.IsDownloaded"  class="tab-item" ng-click="stopTrack(audio)">
+          <i class="icon ion-android-checkbox-blank"></i> Stop
+        </a>
+        <a ng-disabled="audio.IsDownloaded" class="tab-item" ng-click="downloadSong(audio)">
+          <i class="icon ion-ios-download"></i> Download
+        </a>
+      </div>
+      <div id="{{audio.AppFileID}}"></div>
+    </div>
+   
 
-      <!--<p>
-          <a ng-click="CallAudio('http://audio.ibeat.org/content/p1rj1s/p1rj1s_-_rockGuitar.mp3')">Play Guitar</a>
-      </p>
-      <p>
-          <a ng-click="CallAudio('https://royalwap.net/320-789121s/Lambiyaan%20Si%20Judaiyaan.mp3')"> Lambiyan Si Judaiyaan </a>
-      </p>
-      <p>
-          <a ng-click="CallAudio('https://royalwap.net/128-389689/Lag%20Ja%20Gale%20Ke%20Phir.mp3')"> Lag Ja Gale ke Phir </a>
-
-      </p>-->
-  
-
-</ion-content>
+  </ion-content>
 </ion-view>

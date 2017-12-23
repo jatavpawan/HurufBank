@@ -1,0 +1,26 @@
+<ion-view view-title="Community">
+        <ion-nav-buttons side="left">
+        <a class="button icon-left ion-chevron-left button-clear button-dark" ng-click="goBack()">Back</a>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+    <a class="tab-item" ng-click="AddFile()">
+      <i class="icon ion-plus-circled"></i>
+    </a>
+  </ion-nav-buttons>
+    <ion-content class="ion-contentColor">
+       <div class="list card" ng-repeat="post in Posts">
+      <div class="item item-avatar">
+        <img ng-src="{{post.FileName?'http://hurufwebsvc.gmcsco.com/Uploads/profilepic/'+post.FileName:'img/classprofile.png'}}">
+        <h2>{{post.Title}}</h2>
+        <p>{{post.Description}}</p>
+      </div>
+
+      <div  class="item tabs tabs-secondary tabs-icon-left">
+        <a class="tab-item" ng-click="ViewDiscussion(post)">
+          <i class="icon ion-eye"></i> See Full Discussion
+        </a>
+      </div>
+      <div id="{{audio.AppFileID}}"></div>
+    </div>
+    </ion-content>
+</ion-view>

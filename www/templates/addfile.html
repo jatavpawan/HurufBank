@@ -1,0 +1,38 @@
+<ion-view view-title="Add {{footerIcoSelection==1? 'Quran' :footerIcoSelection==2? 'Para':footerIcoSelection==3? 'Surah':''}} {{TabID==1?'PDF' :TabID==2?'Video':'Audio' }} File">
+    <ion-nav-buttons side="left">
+        <a class="button icon-left ion-chevron-left button-clear button-dark" ng-click="goBack()">Back</a>
+    </ion-nav-buttons>
+    <ion-content class="ion-contentColor">
+
+        <div class="list list-inset list card">
+            <label class="item item-input">
+               <input type="text" placeholder="Title" ng-model="data.Title">
+           </label>
+            <label class="item item-input">
+            <textarea placeholder="Description (optional)" rows="4" cols="10" ng-model="data.Description">
+	</textarea>
+           </label>
+            <div class="row">
+                <h4> Want to upload a file or provide Link </h4>
+            </div>
+            <div class="row">
+
+                <button ng-class="clsactive1" class="button button-positive icon-left button-block ion-upload" ng-click="uploadFile()">Upload File</button>&nbsp;
+                <button ng-class="clsactive2" class="button button-positive icon-left button-block ion-upload" ng-click="showHideLink()">Enter Link</button>
+            </div>
+            <div class="row" ng-show="upload">
+                <button ng-disabled="disableVideoUploadOption" ng-class="uploadactive" class="button icon-left button-block {{TabID==1?'ion-ios-paper-outline' :TabID==2?'ion-ios-videocam':'ion-radio-waves' }}" ng-click="selectFile()">{{uploadText}}</button>&nbsp;
+            </div>
+            <label class="item item-input" ng-show="link">
+                 <i class="icon placeholder-icon {{TabID==1?'ion-ios-paper-outline' :TabID==2?'ion-ios-videocam':'ion-radio-waves' }}"></i>
+             <input type="text" placeholder="Paste a {{TabID==1?'PDF' :TabID==2?'Video':'Audio' }} File URL" ng-model="data.FileURL">
+           </label>
+
+            <div class="row">
+
+                <button class="button button-block button-positive" ng-click="SaveFile(data)">Save</button>
+            
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

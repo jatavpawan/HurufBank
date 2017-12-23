@@ -1,35 +1,19 @@
 <ion-view view-title="{{footerIcoSelection==1? 'Quran':footerIcoSelection==2? 'Para':footerIcoSelection==3? 'Surah':''}} Video">
+    <ion-nav-buttons side="right">
+        <a class="tab-item" ng-show="isShowAddIcon" ng-click="AddFile()">
+            <i class="icon ion-plus-circled"></i>
+        </a>
+    </ion-nav-buttons>
     <ion-content>
-        <div class="row">
-            <div class="col col-50">
-                <img src="https://img.youtube.com/vi/SJwlm9ile7A/maxresdefault.jpg" width="80%" ng-click="CallVideo('SJwlm9ile7A')" />
+        <div class="list card" ng-repeat="video in Files">
+            <div class="item">
+                <h2>{{video.Title}}</h2>
+                <p>{{video.Description}}</p>
             </div>
-            <div class="col col-50">
-                <img src="https://img.youtube.com/vi/OQHp_o2TepY/maxresdefault.jpg" width="80%" ng-click="CallVideo('OQHp_o2TepY')" />
+            <div class="item item-image">
+                <img src="https://img.youtube.com/vi/{{video.youtubeID}}/maxresdefault.jpg" width="80%" ng-click="CallVideo(video.youtubeID)" />
             </div>
-        </div><div class="row">
-            <div class="col col-50">
-                <img src="https://img.youtube.com/vi/ef8Ci5Zc3ZA/maxresdefault.jpg" width="80%" ng-click="CallVideo('ef8Ci5Zc3ZA')" />
-            </div>
-            <div class="col col-50">
-                <img src="https://img.youtube.com/vi/GkjNROBu6l0/maxresdefault.jpg" width="80%" ng-click="CallVideo('GkjNROBu6l0')" />
-            </div>
-        </div><div class="row">
-            <div class="col col-50">
-                <img src="https://img.youtube.com/vi/figBg5V_qKM/maxresdefault.jpg" width="80%" ng-click="CallVideo('figBg5V_qKM')" />
-            </div>
-            <div class="col col-50">
-                <img src="https://img.youtube.com/vi/DerApQ5Hrzg/maxresdefault.jpg" width="80%" ng-click="CallVideo('DerApQ5Hrzg')" />
-            </div>
-        </div><div class="row">
-            <div class="col col-50">
-                <img src="https://img.youtube.com/vi/VxaD60dRRlU/maxresdefault.jpg" width="80%" ng-click="CallVideo('VxaD60dRRlU')" />
-            </div>
-            <div class="col col-50">
-                <img src="https://img.youtube.com/vi/6WvHMNuhH3Y/maxresdefault.jpg" width="80%" ng-click="CallVideo('6WvHMNuhH3Y')" />
-            </div>
-
-        </div>
+        </div>    
     </ion-content>
 
 </ion-view>
