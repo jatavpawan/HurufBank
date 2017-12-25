@@ -3,6 +3,24 @@
         <a class="button icon-left ion-chevron-left button-clear button-dark" ng-click="goBack()">Back</a>
     </ion-nav-buttons>
     <ion-content class="padding">
-        <pdf-viewer delegate-handle="my-pdf-container" url="pdfUrl" scale="1" show-toolbar="true"></pdf-viewer>
+        <!-- <pdf-viewer delegate-handle="my-pdf-container" url="pdfUrl" scale="1" show-toolbar="true"></pdf-viewer> -->
+
+        <div class="row PdfHeader">
+				 
+				<div class="btn-group">
+                 {{pageNum}}/{{totalPages}}
+					<button class="btn" ng-click="gotoPage(1)">|&lt;</button>
+					<button class="btn" ng-click="prevPage()">&lt;</button>
+					<button class="btn" ng-click="nextPage()">&gt;</button>
+					<button class="btn" ng-click="gotoPage(lastPage)">&gt;|</button>
+				</div>
+			</div>
+			<!-- <div class="row">
+				<span class="label" ng-show="totalPages">{{pageNum}}/{{totalPages}}</span>
+			</div> -->
+			<div class="row">
+				<pdfviewer ng-src="{{pdfURL}}" on-page-load='pageLoaded(page,total)' id="viewer" load-progress='loadProgress(loaded, total, state)'></pdfviewer>
+            </div>
+            
     </ion-content>
 </ion-view>

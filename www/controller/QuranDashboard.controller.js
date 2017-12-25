@@ -13,6 +13,13 @@
     });
 
 $scope.OpenPDF=function(fileURL){
+
+
+
+
+
+
+    
   $state.go('viewfile',{fileURL:fileURL});
 };
 
