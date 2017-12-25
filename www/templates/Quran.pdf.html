@@ -10,7 +10,9 @@
                   scale="1"
                   show-toolbar="true" ></pdf-viewer>
    <div ng-hide="showDelegate" class="list card" ng-repeat="file in Files">
-
+    <div style="text-align: right;"><a ng-show="isShowAddIcon" ng-click="DeleteFile(file.AppFileID)">
+         <i class="icon ion-close-circled"></i>
+      </a> </div>
     <a class="item item-avatar" ng-click="OpenPDF(file.FileURL)">
       <img src="img/pdfico.png">
       <h2>{{file.Title}}</h2>
