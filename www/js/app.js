@@ -19,7 +19,7 @@ angular.module('starter', ['ionic', 'ui.router', 'ionic-toast', 'starter.service
     'addfile.module.controller',
     'viewfile.module.controller',
     'forgotpassword.module.controller',
-    
+    'ngPDFViewer',
     'addpost.module.controller',
     'viewpost.module.controller'
 ])

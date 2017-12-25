@@ -1,4 +1,4 @@
-﻿angular.module('Quran.Video.module', []).controller('Quran.Video.Controller', function ($scope, $rootScope, $state, Chats, httpServices) {
+﻿angular.module('Quran.Video.module', []).controller('Quran.Video.Controller', function ($scope, $rootScope, $state, Chats, httpServices,ionicToast) {
     $scope.isShowAddIcon = false;
   if (localStorage.getItem("UserID") == 1) {
     $scope.isShowAddIcon = true;
@@ -34,4 +34,18 @@
         $rootScope.disableVideoUploadOption = true;
         $state.go("addfile");
     };
+     $scope.DeleteFile = function (id) {
+        var queryStr = 'id=' + id;
+        httpServices.get('/DeleteFile?' + queryStr).then(function (res) {
+            ionicToast.show(res.data, 'bottom', false, 2500);
+            var qStr = 'FileType=2&FileCategory=' + $rootScope.footerIcoSelection;
+            httpServices.get('/GetFiles?' + qStr).then(function (response) {
+                $scope.Files = response.data;
+
+            }, function (error) {
+            });
+
+        }, function (error) {
+        });
+    }
 })

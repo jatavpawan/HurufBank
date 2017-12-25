@@ -80,3 +80,9 @@ pdf-viewer-toolbar{position:absolute; left:25px;}
     body {
   cursor: url('https://ionicframework.com/img/finger.png'), auto;
 }
+canvas {
+    width: 100%;
+}
+.PdfHeader{
+    margin-bottom: 15px;
+}

@@ -6,14 +6,21 @@
     </ion-nav-buttons>
     <ion-content>
         <div class="list card" ng-repeat="video in Files">
+           
+            <div style="text-align: right;">
+                <a ng-show="isShowAddIcon" ng-click="DeleteFile(video.AppFileID)">
+                    <i class="icon ion-close-circled"></i>
+                </a>
+            </div>
             <div class="item">
                 <h2>{{video.Title}}</h2>
                 <p>{{video.Description}}</p>
             </div>
             <div class="item item-image">
-                <img src="https://img.youtube.com/vi/{{video.youtubeID}}/maxresdefault.jpg" width="80%" ng-click="CallVideo(video.youtubeID)" />
+                <img src="https://img.youtube.com/vi/{{video.youtubeID}}/maxresdefault.jpg" width="80%" ng-click="CallVideo(video.youtubeID)"
+                />
             </div>
-        </div>    
+        </div>
     </ion-content>
 
 </ion-view>

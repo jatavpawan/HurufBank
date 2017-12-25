@@ -6,6 +6,9 @@
   </ion-nav-buttons>
   <ion-content>
     <div class="list card" ng-repeat="audio in Files">
+      <div style="text-align: right;"><a ng-show="isShowAddIcon" ng-click="DeleteFile(audio.AppFileID)">
+         <i class="icon ion-close-circled"></i>
+      </a> </div>
       <div class="item item-avatar">
         <img ng-src="{{audio.pause?'img\\Gifs\\giphy.gif':'img\\Gifs\\music1.png'}}">
         <h2>{{audio.Title}}</h2>

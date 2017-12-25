@@ -1,6 +1,6 @@
 ﻿angular.module('http.service.module', []).service('httpServices', ['$q', '$http', '$ionicLoading', '$rootScope', '$state', function ($q, $http, $ionicLoading, $rootScope, $state) {
-    //var url = 'http://hurufwebsvc.gmcsco.com/';
-     var url = 'http://localhost:61331/';
+    var url = 'http://hurufwebsvc.gmcsco.com/';
+    // var url = 'http://localhost:61331/';
     this.get = function (urlres) {
         var q = $q.defer();
         $ionicLoading.show();

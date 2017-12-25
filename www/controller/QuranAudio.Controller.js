@@ -1,4 +1,5 @@
-﻿angular.module('Quran.Audio.module', []).controller('Quran.Audio.Controller', function ($scope, $rootScope, $state, $ionicPlatform, $cordovaFileTransfer, httpServices, $timeout, $cordovaMedia, ngProgressFactory, ionicToast) {
+﻿angular.module('Quran.Audio.module', []).controller('Quran.Audio.Controller', function ($scope, $rootScope, $state, $ionicPlatform,
+   $cordovaFileTransfer, httpServices, $timeout, $cordovaMedia, ngProgressFactory, ionicToast) {
   var media = null, totalDuration = 0;
   $scope.progressbar = ngProgressFactory.createInstance();
   $scope.isShowAddIcon = false;
@@ -20,13 +21,13 @@
   $scope.downloadSong = function (audio) {
     audio.IsDownloaded = true;
     $ionicPlatform.ready(function () {
-      $scope.progressbar.setParent(document.getElementById(audio.AppFileID));
+       $scope.progressbar.setParent(document.getElementById(audio.AppFileID));
       $scope.progressbar.setColor('#215dce');
       $scope.progressbar.set(5);
       var url = audio.FileURL;
       var filename = url.split("/").pop();
       //alert(filename);
-      var targetPath = cordova.file.externalRootDirectory + "Huruf/Audio/" + filename;
+      var targetPath = cordova.file.externalRootDirectory + "/Huruf/Audio/" + filename;
       var options = {};
       var download = $cordovaFileTransfer.download(url, targetPath, options, true).then(function (success) {
         $scope.downloadProgress = 100;
@@ -60,7 +61,7 @@
       $scope.progressbar.setColor('#6f1f1f');
       var filename = audio.FileURL.split("/").pop();
 
-      var targetPath = cordova.file.externalRootDirectory + "Huruf/Audio/" + filename;
+      var targetPath = cordova.file.externalRootDirectory + "/Huruf/Audio/" + filename;
       //alert(targetPath);
       media = $cordovaMedia.newMedia(targetPath);
       // var iOSPlayOptions = {
@@ -168,4 +169,18 @@
     }, function (error) {
     });
   }
+   $scope.DeleteFile = function (id) {
+        var queryStr = 'id=' + id;
+        httpServices.get('/DeleteFile?' + queryStr).then(function (res) {
+            ionicToast.show(res.data, 'bottom', false, 2500);
+            var qStr = 'FileType=3&FileCategory=' + $rootScope.footerIcoSelection;
+            httpServices.get('/GetFiles?' + qStr).then(function (response) {
+                $scope.Files = response.data;
+
+            }, function (error) {
+            });
+
+        }, function (error) {
+        });
+    }
 });

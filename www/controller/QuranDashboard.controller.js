@@ -11,7 +11,6 @@
 
     }, function (error) {
     });
-
     $scope.OpenPDF = function (fileURL) {
         $state.go('viewfile', { fileURL: fileURL });
     };
@@ -24,9 +23,9 @@
     $scope.DeleteFile = function (id) {
         var queryStr = 'id=' + id;
         httpServices.get('/DeleteFile?' + queryStr).then(function (res) {
-            ionicToast.show(res, 'bottom', false, 2500);
-            var queryStr = 'FileType=1&FileCategory=' + $rootScope.footerIcoSelection;
-            httpServices.get('/GetFiles?' + queryStr).then(function (response) {
+            ionicToast.show(res.data, 'bottom', false, 2500);
+            var qStr = 'FileType=1&FileCategory=' + $rootScope.footerIcoSelection;
+            httpServices.get('/GetFiles?' + qStr).then(function (response) {
                 $scope.Files = response.data;
 
             }, function (error) {
